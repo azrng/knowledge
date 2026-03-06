@@ -1,0 +1,151 @@
+---
+title: 说明
+lang: zh-CN
+date: 2023-10-15
+publish: true
+author: azrng
+isOriginal: true
+category:
+  - middleware
+tag:
+  - es
+  - readme
+---
+
+## 前言
+
+关系型数据库不适合检索，因为会导致索引失效，另外全表扫描效率低，并且还不能分词、联想，得到的不是期望的结果。
+
+## 概述
+
+Elasticsearch：[https://www.elastic.co/cn/products/elasticsearch](https://www.elastic.co/cn/products/elasticsearch)   
+elasticsearch中文社区：[https://elasticsearch.cn/](https://elasticsearch.cn/)   
+
+ElasticSearch是一个基于Lucene的试试分布式搜索和分析引擎，它提供了一个分布式多用户能力的全文搜索引擎，基于RESTful接口，使用java语言开发，是一种流行的企业级搜索引擎，用于全文搜索、结构化搜索、分析。
+
+解决的问题：全文索引、大数据量秒查询、PB级别数据搜索、毫秒级响应、完整的API接口、自动备份、集群稳定、扩容方便
+
+使用场景(商城，文章类网站，单表数据量太大，日志系统储存，报表统计查询慢)
+
+- 搜索引擎：ES 提供了高效的全文搜索功能，可以用于构建搜索引擎、网站搜索或日志搜索等。
+- 实时日志分析：ES 可以帮助您存储和分析大规模的日志数据，并支持实时查看、过滤、聚合和可视化分析。
+- 数据分析和挖掘：ES 支持复杂的查询和聚合操作，可以用于数据分析、数据挖掘和数据可视化等任务。
+
+不支持场景：不支持事务、不支持多表关联查询、不支持频繁更新的业务场景
+
+## 实现原理
+
+Elasticsearch 的实现原理主要分为以下几个步骤，首先用户将数据提交到Elasticsearch 数据库中，再通过分词控制器去将对应的语句分词，将其权重和分词结果一并存入数据，当用户搜索数据时候，再根据权重将结果排名，打分，再将返回结果呈现给用户。
+
+## 概念
+
+cluster：代表一个集群，集群中有多个节点，其中有一个为主节点，这个主节点是可以通过选举产生的，主从节点是对于集群内部来说的。es的一个概念就是去中心化，字面上理解就是无中心节点，这是对于集群外部来说的，因为从外部来看es集群，在逻辑上是个整体，你与任何一个节点的通信和与整个es集群通信是等价的。
+
+shards：代表索引分片，es可以把一个完整的索引分成多个分片，这样的好处是可以把一个大的索引拆分成多个，分布到不同的节点上。构成分布式搜索。分片的数量只能在索引创建前指定，并且索引创建后不能更改。
+
+replicas：代表索引副本，es可以设置多个索引的副本，副本的作用一是提高系统的容错性，当某个节点某个分片损坏或丢失时可以从副本中恢复。二是提高es的查询效率，es会自动对搜索请求进行负载均衡。
+
+recovery：代表数据恢复或叫数据重新分布，es在有节点加入或退出时会根据机器的负载对索引分片进行重新分配，挂掉的节点重新启动时也会进行数据恢复。
+
+river：代表es的一个数据源，也是其它存储方式（如：数据库）同步数据到es的一个方法。它是以插件方式存在的一个es服务，通过读取river中的数据并把它索引到es中，官方的river有couchDB的，RabbitMQ的，Twitter的，Wikipedia的。
+
+gateway：代表es索引快照的存储方式，es默认是先把索引存放到内存中，当内存满了时再持久化到本地硬盘。gateway对索引快照进行存储，当这个es集群关闭再重新启动时就会从gateway中读取索引备份数据。es支持多种类型的gateway，有本地文件系统（默认），分布式文件系统，Hadoop的HDFS和amazon的s3云存储服务。
+
+discovery.zen：代表es的自动发现节点机制，es是一个基于p2p的系统，它先通过广播寻找存在的节点，再通过多播协议来进行节点之间的通信，同时也支持点对点的交互。
+
+Transport：代表es内部节点或集群与客户端的交互方式，默认内部是使用tcp协议进行交互，同时它支持http协议（json格式）、thrift、servlet、memcached、zeroMQ等的传输协议（通过插件方式集成）。
+
+### 倒排索引
+
+摘抄自：https://zhuanlan.zhihu.com/p/622347882
+
+#### 是什么
+
+倒排索引是一种用于全文搜索的数据结构，它将文档中的每个单词映射到包含该单词的所有文档的列表中，然后用该列表替换单词。因此，倒排索引在文本搜索和信息检索中广泛应用，如搜索引擎、网站搜索、文本分类等场景中。
+
+具体来说，一个倒排索引包含一个词语词典和每个词语对应的倒排列表。倒排列表中记录了包含该词语的所有文档的编号、词频等信息。这让我们能够在O(1)的时间内判断某个文档是否包含某个词，而且还可以基于词频、相关度等统计信息进行搜索结果排序。
+
+以一个例子来说明：当我们输入一个关键字“搜索引擎”时，搜索引擎会在倒排索引中查找包含“搜索引擎”这个词语的文档列表，然后返回这些文档给用户。这种方式比全文检索要快很多，因为倒排索引搜索的是单个词语，而不是整个文档。
+
+总的来说，倒排索引是一种基于单词的文本搜索和匹配算法，可以大大加速搜索引擎的查询速度，提高用户体验。
+
+#### 优点
+
+1. 高效的文本搜索。由于倒排索引通过单词快速定位到含有该单词的文档，所以搜索效率非常高。与传统的全文搜索方式相比，倒排索引不需要对每个文档进行扫描，因此可以在大型数据集上快速进行搜索。
+2. 支持高级搜索功能。倒排索引可以使用词间关系、词条权重等信息对搜索结果进行精确匹配、布尔运算和相关度排序。
+3. 可定制的分析和处理。倒排索引支持构建和应用自定义分析器和过滤器，可以针对不同用例和词汇集的需求灵活处理。
+4. 灵活的扩展性。倒排索引支持横向扩展，可以水平分割和复制数据，这样可以轻松地扩大索引容量和提高搜索效率。
+5. 支持分词。分词可以将连续字母或数字序列划分为有意义的词组或单个词汇，这些分词信息可以被用于构建索引，从而实现更加精确的搜索结果。
+6. 支持位置信息。倒排索引可以记录每个单词在句子中的位置，从而支持短语搜索和文本摘要等功能。
+
+#### 和正排索引区别
+
+1. 倒排索引与正排索引是两种索引文档的方式。
+2. 正排索引是按照文档编号或文档ID等有序的方式将每个文档存储在索引中，通过文档编号或ID进行检索。这种方式类似于数据库表的行，可以很方便地根据文档ID检索到具体的文档，但是不适合处理大规模文档库的情况。
+3. 倒排索引是按照单词或关键字将文档进行索引，并记录包含该词汇的文档列表。这种方式类似于数据库表的列，可以将具有相同属性的文档按照关键词进行分类，从而实现更加高效和精确的文本搜索。
+
+因此，倒排索引和正排索引的区别主要在于索引方式：正排索引按照文档ID有序存储每个文档，而倒排索引按照单词将文档分类存储。在具体实现上，倒排索引中除了文档ID之外，还需要记录关键词出现的位置、计算词频信息等。
+
+综上所述，正排索引适用于文档库较小和需要基于ID查询和检索的场景，而倒排索引适用于大规模文档库和需要高效和精确搜索的场景。
+
+#### 使用场景
+
+倒排索引是一种强大的数据结构，可以用于多种场景，包括但不限于以下几个方面：
+
+1. 文本搜索引擎。倒排索引是构建文本搜索引擎的核心数据结构，可以实现快速、高效和精确的文本匹配和搜索。
+2. 数据库索引。倒排索引可以用于构建关系型或非关系型数据库的索引，提高读写性能和减少存储空间。
+3. 日志分析。倒排索引可以用于对大量日志数据进行分析和搜索，提取统计信息、异常排查和数据挖掘等。
+4. 推荐系统。倒排索引可以用于构建用户兴趣和行为数据的索引，实现用户的个性化推荐和内容推荐。
+5. 网络安全。倒排索引可以用于基于网络流量和日志数据的异常检测和入侵检测，提高网络安全性。
+6. 社交媒体。倒排索引可以用于构建社交媒体平台的索引，实现用户搜索、推荐和精准广告等功能。
+
+综上所述，倒排索引可以应用于各种需要快速实现搜索和索引的场景，是一种非常通用和有效的技术和数据结构。
+
+## 分词器
+
+ES默认内置了一个分词器standard，但是对于中文的分词效果不理想
+
+### IK
+
+- 支持自定义词库，支持热更新分词字典
+- [https://github.com/medcl/elasticsearch-analysis-ik](https://link.zhihu.com/?target=https%3A//github.com/medcl/elasticsearch-analysis-ik)
+
+### jieba
+
+- Python 中最流行的分词系统，支持分词和词性标注
+- 支持繁体分词、自定义词典、并行分词等
+- [https://github.com/sing1ee/elasticsearch-jieba-plugin](https://link.zhihu.com/?target=https%3A//github.com/sing1ee/elasticsearch-jieba-plugin)
+
+### THULAC
+
+- THU Lexucal Analyzer for Chinese, 清华大学自然语言处理和社会人文计算实验室的一套中文分词器
+- [https://github.com/thunlp/THULAC-Java](https://link.zhihu.com/?target=https%3A//github.com/thunlp/THULAC-Java)
+
+## 对比
+
+### Elasticsearch VS Clickhouse
+
+Clickhouse 在大部分的查询的性能上都明显要优于 Elastic。
+在正则查询（Regex query）和单词查询（Term query）等搜索常见的场景下，也并不逊色。
+在聚合场景下，Clickhouse 表现异常优秀，充分发挥了列式引擎的优势。且在Clickhouse在没有任何优化和没有打开布隆过滤器。可见 Clickhouse 确实是一款非常优秀的数据库，可以用于某些搜索的场景。
+Clickhouse 在基本场景表现非常优秀，性能优于 ES。
+Elasticsearch仅支持Json格式的数据，Elasticsearch有独自生态和语言，学习成本相对较高。
+Elasticsearch最擅长的主要是完全搜索场景（where过滤后的记录数较少），在内存充足运行环境下可以展现出非常出色的并发查询能力。但是在大规模数据的分析场景下（where过滤后的记录数较多），ClickHouse凭借极致的列存和向量化计算会有更加出色的并发表现，并且查询支持完备度也更好。ClickHouse的并发处理能力立足于磁盘吞吐，而Elasticsearch的并发处理能力立足于内存Cache，这使得两者的成本区间有很大差异，ClickHouse更加适合低成本、大数据量的分析场景，它能够充分利用磁盘的带宽能力。数据导入和存储成本上，ClickHouse更加具有绝对的优势。
+
+## 参考文档
+
+[https://mp.weixin.qq.com/s/7u9oTdUBg0svSeKOrVlThw](https://mp.weixin.qq.com/s/7u9oTdUBg0svSeKOrVlThw) | .NET API 之如何使用 Elasticsearch 存储文档
+[https://mp.weixin.qq.com/s/fRw9kXgZoDPMeVYNcLfbOA](https://mp.weixin.qq.com/s/fRw9kXgZoDPMeVYNcLfbOA) | 搜索引擎Elasticsearch，这篇文章给讲透了（建议收藏）
+
+全文检索 es：[https://www.cnblogs.com/xiaoguli/p/15181186.html](https://www.cnblogs.com/xiaoguli/p/15181186.html)
+使用[https://www.cnblogs.com/wei325/p/15828705.html](https://www.cnblogs.com/wei325/p/15828705.html)
+[https://mp.weixin.qq.com/s/mq3Jz1vNxFklEWsjEQmEKw](https://mp.weixin.qq.com/s/mq3Jz1vNxFklEWsjEQmEKw) | 原来 Elasticsearch 还可以这么理解！
+[https://mp.weixin.qq.com/s/g4l8OGEjVBeFwautEq0n2g](https://mp.weixin.qq.com/s/g4l8OGEjVBeFwautEq0n2g) | 用了 Elasticsearch 后，查询起飞了！
+[https://mp.weixin.qq.com/s/LCGyu6MNWu0GT51pyADmmQ](https://mp.weixin.qq.com/s/LCGyu6MNWu0GT51pyADmmQ) | Asp.NET Core 如何使用ElasticSearch和Kibana创建仪表板
+[https://www.cnblogs.com/skychen1218/p/15720522.html](https://www.cnblogs.com/skychen1218/p/15720522.html) | 记一次引入Elasticsearch的系统架构实战 - 陈珙 - 博客园
+[https://mp.weixin.qq.com/s/EP4i0AW1OjLJyeAz0k1CgA](https://mp.weixin.qq.com/s/EP4i0AW1OjLJyeAz0k1CgA) | 如何在ASP.NET Core中集成ElasticSearch
+.Net Core中使用NEST简单操作Elasticsearch：[https://mp.weixin.qq.com/s/ukxBQFTrSNHJgZWAHAVXOA](https://mp.weixin.qq.com/s/ukxBQFTrSNHJgZWAHAVXOA)
+.NET6 使用 NEST 查询Elasticsearch,时间字段传值踩坑：[https://mp.weixin.qq.com/s/jW9oCekXLhwvuPdFwkWQ0w](https://mp.weixin.qq.com/s/jW9oCekXLhwvuPdFwkWQ0w)
+[https://mp.weixin.qq.com/s/2H14mDuQ1MWdYPOZs98_Vg](https://mp.weixin.qq.com/s/2H14mDuQ1MWdYPOZs98_Vg) | ElasticSearch入门 附.Net Core例子
+
+https://mp.weixin.qq.com/s/D9ZVRVGidsvDHjvZ83tpRg | Elastic学习之旅 (5) 系列文章
