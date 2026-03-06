@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.26" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme="dark"] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"部署","image":["https://azrng.gitee.io/kbms/kbms/common/1655872902959-9e23f82d-c9c9-4764-a040-83c847164e36.png"],"datePublished":"2023-03-30T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/middleware/testMange/duandaoduanceshi/playwright/bushu.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="部署"><meta property="og:description" content="拷贝浏览器 其实 Playwright 默认是到C:\Users\用户名\AppData\Local\ms-playwright文件夹下查找依赖的浏览器，我们只需将本机文件夹复制到部署机器的对应文件夹即可。 但更简便的方式，是将浏览器也放到发布文件夹下一起部署。 操作示例 修改代码，设置查询依赖浏览器路径的环境变量 修改项目文件，设置发布时候执行Tas..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1655872902959-9e23f82d-c9c9-4764-a040-83c847164e36.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-03-30T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1f046e495f9c28ef302f30895bda829e";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><title>部署 | 知识库</title><meta name="description" content="拷贝浏览器 其实 Playwright 默认是到C:\Users\用户名\AppData\Local\ms-playwright文件夹下查找依赖的浏览器，我们只需将本机文件夹复制到部署机器的对应文件夹即可。 但更简便的方式，是将浏览器也放到发布文件夹下一起部署。 操作示例 修改代码，设置查询依赖浏览器路径的环境变量 修改项目文件，设置发布时候执行Tas...">
+    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DO02P82r.js"><link rel="modulepreload" href="/kbms/assets/bushu.html-CFBRFWm4.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
+    <script type="module" src="/kbms/assets/app-DO02P82r.js" defer></script>
+  </body>
+</html>

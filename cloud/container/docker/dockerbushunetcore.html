@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.26" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme="dark"] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"docker部署netcore","image":["https://azrng.gitee.io/kbms/kbms/common/1609562125324-5df8df95-5306-45a3-9aff-255f1e492115.png"],"datePublished":"2023-05-19T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/cloud/container/docker/dockerbushunetcore.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="docker部署netcore"><meta property="og:description" content="增加dockerfile 将写好的项目增加dockerfile文件，可以通过右键添加docker支持方式增加，然后发布弄到服务器 生成自定义镜像 在打包的项目目录下执行 命令：docker build -t 镜像名称:版本 . 后面有一个.标识是当前目录 示例：docker build -t booklibrary:1.0 .（结尾有一个点，代表在当前..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1609562125324-5df8df95-5306-45a3-9aff-255f1e492115.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-05-19T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1f046e495f9c28ef302f30895bda829e";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><title>docker部署netcore | 知识库</title><meta name="description" content="增加dockerfile 将写好的项目增加dockerfile文件，可以通过右键添加docker支持方式增加，然后发布弄到服务器 生成自定义镜像 在打包的项目目录下执行 命令：docker build -t 镜像名称:版本 . 后面有一个.标识是当前目录 示例：docker build -t booklibrary:1.0 .（结尾有一个点，代表在当前...">
+    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DO02P82r.js"><link rel="modulepreload" href="/kbms/assets/dockerbushunetcore.html-DU4Te_5j.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
+    <script type="module" src="/kbms/assets/app-DO02P82r.js" defer></script>
+  </body>
+</html>

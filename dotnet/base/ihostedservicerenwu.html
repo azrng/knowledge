@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.26" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme="dark"] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"后台任务","image":[""],"datePublished":"2023-10-14T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dotnet/base/ihostedservicerenwu.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="后台任务"><meta property="og:description" content="后台任务配置 可以通过配置来操作后台任务的设置 IHostedService 注册托管服务的后台任务 MyHostedService类内容 在.Net6中你会发现程序在等待十秒后输出开始执行xxx，然后启动了项目，这个行为是让人很奇怪的操作，但是在.Net8中可以通过下面的配置来让应用程序不等待该任务处理 执行顺序 在.NetCore3.x/.NET5..."><meta property="og:type" content="article"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="backgroud"><meta property="article:published_time" content="2023-10-14T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1f046e495f9c28ef302f30895bda829e";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><title>后台任务 | 知识库</title><meta name="description" content="后台任务配置 可以通过配置来操作后台任务的设置 IHostedService 注册托管服务的后台任务 MyHostedService类内容 在.Net6中你会发现程序在等待十秒后输出开始执行xxx，然后启动了项目，这个行为是让人很奇怪的操作，但是在.Net8中可以通过下面的配置来让应用程序不等待该任务处理 执行顺序 在.NetCore3.x/.NET5...">
+    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DO02P82r.js"><link rel="modulepreload" href="/kbms/assets/ihostedservicerenwu.html-CNrD6Wos.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
+    <script type="module" src="/kbms/assets/app-DO02P82r.js" defer></script>
+  </body>
+</html>

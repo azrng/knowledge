@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.26" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme="dark"] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"说明","image":["https://azrng.gitee.io/kbms/kbms/common/1641029030244-a3a42511-f87c-4e14-9434-4a639caf587d.png"],"datePublished":"2023-11-17T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dotnet/csharp/threadConcurrencyAndAsync/async/"><meta property="og:site_name" content="知识库"><meta property="og:title" content="说明"><meta property="og:description" content="描述 不必等待前面所有的代码执行完才开始执行某一段代码，这就是异步。就比如不必要等蒸过米饭才开始炒菜，可以让电饭锅去蒸米饭，然后燃气去炒菜，又或者去饭店吃饭，服务员就是主线程，然后顾客点餐就是具体的任务，当服务员去站到顾客面前等待顾客点餐就是同步方法，当服务员给顾客菜单，顾客点完后再给服务员，服务员在顾客点餐的时候可以去忙其他的事情，这个就是异步方法。..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1641029030244-a3a42511-f87c-4e14-9434-4a639caf587d.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="async"><meta property="article:published_time" content="2023-11-17T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1f046e495f9c28ef302f30895bda829e";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><title>说明 | 知识库</title><meta name="description" content="描述 不必等待前面所有的代码执行完才开始执行某一段代码，这就是异步。就比如不必要等蒸过米饭才开始炒菜，可以让电饭锅去蒸米饭，然后燃气去炒菜，又或者去饭店吃饭，服务员就是主线程，然后顾客点餐就是具体的任务，当服务员去站到顾客面前等待顾客点餐就是同步方法，当服务员给顾客菜单，顾客点完后再给服务员，服务员在顾客点餐的时候可以去忙其他的事情，这个就是异步方法。...">
+    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DO02P82r.js"><link rel="modulepreload" href="/kbms/assets/index.html-0z1xi-9i.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
+    <script type="module" src="/kbms/assets/app-DO02P82r.js" defer></script>
+  </body>
+</html>

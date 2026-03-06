@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.26" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme="dark"] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"简单操作","image":["https://azrng.gitee.io/kbms/kbms/dotnet/image-20240421221535572.png","https://azrng.gitee.io/kbms/kbms/common/1669531947826-e0a4440d-3a42.png","https://azrng.gitee.io/kbms/kbms/dotnet/image-20240421223806666.png","https://azrng.gitee.io/kbms/kbms/common/1669532487711-64968ba4-12f3.png","https://azrng.gitee.io/kbms/kbms/common/1631024347306-6cb8d6a8-0f4e-4422-9fcf-cefc50c57988.png","https://azrng.gitee.io/kbms/kbms/common/1669534749945-a3c326b9-0c5e-476f-a677-d3ffa2822908.png","https://azrng.gitee.io/kbms/kbms/dotnet/image-20240421225548372.png","https://azrng.gitee.io/kbms/kbms/cloud/image-20240421224837038.png","https://azrng.gitee.io/kbms/kbms/dotnet/image-20240421225902231.png","https://azrng.gitee.io/kbms/kbms/cloud/1725717770052-da6f0d03-549e-4270-a74b-5eb18dde4140.png","https://azrng.gitee.io/kbms/kbms/cloud/1725713703216-9af83f33-b7d4-4746-9088-626f32e8858f.png","https://azrng.gitee.io/kbms/kbms/cloud/1725713918373-e0b04224-6584-4ecb-8394-8739f2cb9e8b.png","https://azrng.gitee.io/kbms/kbms/common/1630853106274-e18c02ab-fb18-485e-8d50-16b05cff1f51.png","https://azrng.gitee.io/kbms/kbms/cloud/image-20240908150552108.png","https://azrng.gitee.io/kbms/kbms/common/1630853156788-69b4bfb8-dec8-436d-a9ff-78be35be0724.png","https://azrng.gitee.io/kbms/kbms/common/1669540260122-0be4c35e-a786-4ad2-aa53-4592b3a8a740.png"],"datePublished":"2022-11-27T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/cloud/ciAndCd/gitlab/sampleOperator.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="简单操作"><meta property="og:description" content="目的 我们要实现的目的是我本地不断提交代码(CI),然后服务器不断进行部署(CD)的一个简单流程。 环境准备 Ubuntu服务器A：已经安装了docker，并使用docker部署了gitlab 服务器B：已经安装了docker Gitlab检查 这里我们来检查一下Gitlab是否运行正常，这里我访问我服务器A地址：http://192.168.137...."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/dotnet/image-20240421221535572.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2022-11-27T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1f046e495f9c28ef302f30895bda829e";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><title>简单操作 | 知识库</title><meta name="description" content="目的 我们要实现的目的是我本地不断提交代码(CI),然后服务器不断进行部署(CD)的一个简单流程。 环境准备 Ubuntu服务器A：已经安装了docker，并使用docker部署了gitlab 服务器B：已经安装了docker Gitlab检查 这里我们来检查一下Gitlab是否运行正常，这里我访问我服务器A地址：http://192.168.137....">
+    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DO02P82r.js"><link rel="modulepreload" href="/kbms/assets/sampleOperator.html-CUgTJdWO.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
+    <script type="module" src="/kbms/assets/app-DO02P82r.js" defer></script>
+  </body>
+</html>

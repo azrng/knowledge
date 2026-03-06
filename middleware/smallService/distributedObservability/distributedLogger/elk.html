@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.26" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme="dark"] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"分布式日志-ELK","image":["https://azrng.gitee.io/kbms/kbms/common/1612400813631-915ac8ae-8cb1-40a3-b8c8-4c6853f76849.png","https://azrng.gitee.io/kbms/kbms/common/1612400813599-d9159018-4993-45d8-9ef6-f444ede05eb9.png","https://azrng.gitee.io/kbms/kbms/common/1612400813562-90a3ffbd-86b9-4eb5-b814-cd331dbf5b60.png","https://azrng.gitee.io/kbms/kbms/common/1612400813582-91eed2ec-712b-4037-a9a4-57f2c3a60022.png","https://azrng.gitee.io/kbms/kbms/common/1612400813448-340d045a-4d6d-43f4-aa97-1c80a5bb5cf6.png"],"datePublished":"2023-07-27T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/middleware/smallService/distributedObservability/distributedLogger/elk.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="分布式日志-ELK"><meta property="og:description" content="概述 ELK 是Elastic公司提供的一套完整的日志收集以及展示的解决方案，是三个产品的首字母缩写，分别是ElasticSearch、Logstash 和 Kibana。 Elasticsearch是实时全文搜索和分析引擎，提供搜集、分析、存储数据三大功能 Logstash是一个用来搜集、分析、过滤日志的工具 Kibana是一个基于Web的图形界面，..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1612400813631-915ac8ae-8cb1-40a3-b8c8-4c6853f76849.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-07-27T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1f046e495f9c28ef302f30895bda829e";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><title>分布式日志-ELK | 知识库</title><meta name="description" content="概述 ELK 是Elastic公司提供的一套完整的日志收集以及展示的解决方案，是三个产品的首字母缩写，分别是ElasticSearch、Logstash 和 Kibana。 Elasticsearch是实时全文搜索和分析引擎，提供搜集、分析、存储数据三大功能 Logstash是一个用来搜集、分析、过滤日志的工具 Kibana是一个基于Web的图形界面，...">
+    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DO02P82r.js"><link rel="modulepreload" href="/kbms/assets/elk.html-B5qNkafH.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
+    <script type="module" src="/kbms/assets/app-DO02P82r.js" defer></script>
+  </body>
+</html>

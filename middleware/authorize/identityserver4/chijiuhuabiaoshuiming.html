@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.26" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme="dark"] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"持久化表说明","image":["https://azrng.gitee.io/kbms/kbms/common/1620442383916-8bb2f13d-a760-4c42-93cd-182f68a9ef45.png","https://azrng.gitee.io/kbms/kbms/common/1620442413509-597667a4-cd08-49d7-8655-3a8a1ad86cab.png","https://azrng.gitee.io/kbms/kbms/common/1620443537213-f303ba9e-d877-42fe-9aa6-30096b524b21.png"],"datePublished":"2022-05-02T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/middleware/authorize/identityserver4/chijiuhuabiaoshuiming.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="持久化表说明"><meta property="og:description" content="多个上下文：有两种类型的数据需要持久化到数据库中 官方自带上下文 ConfigurationDbContext 配置数据(资源、客户端、身份) image.png 生成迁移文件 PersistedGrantDbContext 使用中产生的操作数据(令牌、代码和用户授权信息) image.png 生成迁移文件 扩展库 ApplicationDbConte..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1620442383916-8bb2f13d-a760-4c42-93cd-182f68a9ef45.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2022-05-02T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1f046e495f9c28ef302f30895bda829e";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><title>持久化表说明 | 知识库</title><meta name="description" content="多个上下文：有两种类型的数据需要持久化到数据库中 官方自带上下文 ConfigurationDbContext 配置数据(资源、客户端、身份) image.png 生成迁移文件 PersistedGrantDbContext 使用中产生的操作数据(令牌、代码和用户授权信息) image.png 生成迁移文件 扩展库 ApplicationDbConte...">
+    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DO02P82r.js"><link rel="modulepreload" href="/kbms/assets/chijiuhuabiaoshuiming.html-CZUG-2S6.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
+    <script type="module" src="/kbms/assets/app-DO02P82r.js" defer></script>
+  </body>
+</html>

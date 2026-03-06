@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.26" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme="dark"] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"OpenTelemetry快速开始","image":["https://azrng.gitee.io/kbms/kbms/soft/a5ef7ca6bc7842419734f7f403946d62.png","https://azrng.gitee.io/kbms/kbms/soft/b75760d1815c4512adbf2ff69dc18265.png","https://azrng.gitee.io/kbms/kbms/soft/e1a777ed966749399b6075b8497b464b.png","https://azrng.gitee.io/kbms/kbms/soft/18e098d9e5704f949b2c17d3cb65d553.png","https://azrng.gitee.io/kbms/kbms/soft/d2d7bb6e27e14bd2803e904e59a33ed1.png","https://azrng.gitee.io/kbms/kbms/soft/b2d7ba1bf55d43a6b9ac1fb9f4f94f02.png","https://azrng.gitee.io/kbms/kbms/soft/a38c174edc274fef89b79cbd412b1d78.png","https://azrng.gitee.io/kbms/kbms/soft/a7bbf3581f14433497885edf1a7c05fb.png","https://azrng.gitee.io/kbms/kbms/soft/88a0224156124d62b0eff11ad046188a.png","https://azrng.gitee.io/kbms/kbms/soft/1408d9b04f8d4e0d81d3013e6533ec2e.png","https://azrng.gitee.io/kbms/kbms/soft/f6e3c303aa0e40cdbe705e588ebf9ee7.png","https://azrng.gitee.io/kbms/kbms/soft/1bef194077a448a38888fdd1ba4c6d46.png","https://azrng.gitee.io/kbms/kbms/soft/01c8f09ff60e42afa1c0107bf3136e18.png","https://azrng.gitee.io/kbms/kbms/soft/9f7b37829273485781ba11ed142f1401.png","https://azrng.gitee.io/kbms/kbms/soft/4e957a61a6b344cdb6b661a3321c198f.png","https://azrng.gitee.io/kbms/kbms/soft/5d181ac981d34ddca81c5b908beb18b6.png","https://azrng.gitee.io/kbms/kbms/soft/2a1ab5af57174058a234806d03399f5c.png","https://azrng.gitee.io/kbms/kbms/soft/a965f6e35c7a417fb45d584fcedb1ff2.png","https://azrng.gitee.io/kbms/kbms/soft/43bbbc5490c342d6842b9ef485c6190e.png","https://azrng.gitee.io/kbms/kbms/soft/fa0f036049a1452492ae4d30663d8457.png","https://azrng.gitee.io/kbms/kbms/soft/7f832b36c926435d9c64bcbe3eef875e.png","https://azrng.gitee.io/kbms/kbms/soft/e4f53d2010424875a277b8a96045923c.png","https://azrng.gitee.io/kbms/kbms/soft/edb085bca1b04448a2ce3959c1d3b59c.png"],"datePublished":"2023-09-29T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/middleware/smallService/distributedObservability/distributedMonitoring/openTelemetryStartedCombat.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="OpenTelemetry快速开始"><meta property="og:description" content="工具介绍 注意：该部分介绍摘抄自：https://www.aiwanyun.cn/archives/174 Prometheus、Grafana、Node Exporter 和Alertmanager是一组用于监控和可视化系统性能的开源工具。它们通常一起使用，形成一个强大的完整的监控和告警系统。 一般来说，这四个工具一起协作，形成了一个完整的监控和告警..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/soft/a5ef7ca6bc7842419734f7f403946d62.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="OpenTelemetry"><meta property="article:published_time" content="2023-09-29T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1f046e495f9c28ef302f30895bda829e";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><title>OpenTelemetry快速开始 | 知识库</title><meta name="description" content="工具介绍 注意：该部分介绍摘抄自：https://www.aiwanyun.cn/archives/174 Prometheus、Grafana、Node Exporter 和Alertmanager是一组用于监控和可视化系统性能的开源工具。它们通常一起使用，形成一个强大的完整的监控和告警系统。 一般来说，这四个工具一起协作，形成了一个完整的监控和告警...">
+    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DO02P82r.js"><link rel="modulepreload" href="/kbms/assets/openTelemetryStartedCombat.html-FYThqsLk.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
+    <script type="module" src="/kbms/assets/app-DO02P82r.js" defer></script>
+  </body>
+</html>

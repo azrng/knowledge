@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.26" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme="dark"] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"桥接模式","image":["https://azrng.gitee.io/kbms/kbms/common/1659105919521-ab7fe559-73da-44ac-b90e-7d5fa781e682.png","https://azrng.gitee.io/kbms/kbms/common/1659105943062-d407db50-d296-437e-bc2f-7b24f3059d70.png","https://azrng.gitee.io/kbms/kbms/common/1659106791343-89dd17c2-d3d9-47e5-85fb-01d5ca0be901.png","https://azrng.gitee.io/kbms/kbms/common/1659106811244-db171695-4a4f-4e7a-b9d0-9dd27331df32.png","https://azrng.gitee.io/kbms/kbms/common/1659107170223-f2fd846a-3fd0-475c-a000-d972262f771b.png","https://azrng.gitee.io/kbms/kbms/common/1659107213865-0f8b4403-40f4-4319-92b2-06afba97d8f3.png","https://azrng.gitee.io/kbms/kbms/common/1659107465021-09a12b98-fc3d-4303-8422-4e2042b9a1e7.png","https://azrng.gitee.io/kbms/kbms/common/1659108338588-e8e29d8f-8e87-4fa6-98aa-d64c617c2b12.png"],"datePublished":"2022-12-25T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/softwareDesign/highQualityCode/designMode/jiegouxing/qiaojiemoshi.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="桥接模式"><meta property="og:description" content="简述 桥接模式，也叫做桥梁模式，翻译为中文就是将抽象和实现部分，让它们可以独立变化。 这里的抽象，并非指的是抽象类或者接口，而是被抽象出来的一套“类库” 这里说的实现，也并非指的“接口的实现类”，而是跟具体的一套“类库” 使用场景 利用面向对象的技术来使得类型能够轻松沿着多个方向进行变化，而又不引入额外的复杂度，这就要使用桥接模式。 实现 我们要开发一..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1659105919521-ab7fe559-73da-44ac-b90e-7d5fa781e682.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2022-12-25T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1f046e495f9c28ef302f30895bda829e";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><title>桥接模式 | 知识库</title><meta name="description" content="简述 桥接模式，也叫做桥梁模式，翻译为中文就是将抽象和实现部分，让它们可以独立变化。 这里的抽象，并非指的是抽象类或者接口，而是被抽象出来的一套“类库” 这里说的实现，也并非指的“接口的实现类”，而是跟具体的一套“类库” 使用场景 利用面向对象的技术来使得类型能够轻松沿着多个方向进行变化，而又不引入额外的复杂度，这就要使用桥接模式。 实现 我们要开发一...">
+    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DO02P82r.js"><link rel="modulepreload" href="/kbms/assets/qiaojiemoshi.html-t8oHjLLT.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
+    <script type="module" src="/kbms/assets/app-DO02P82r.js" defer></script>
+  </body>
+</html>

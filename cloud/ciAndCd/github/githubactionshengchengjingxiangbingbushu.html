@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.26" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme="dark"] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"GitHub Action生成镜像并部署","image":["https://azrng.gitee.io/kbms/kbms/common/1662964788789-be6dab44-c8d3-47e5-92be-8b39ffad23f6.png","https://azrng.gitee.io/kbms/kbms/common/1662964862458-55292112-dc41-4232-96cb-361d761de2f1.png","https://azrng.gitee.io/kbms/kbms/common/1665843728374-35195900-1e1e-4bbd-8dcd-7c00d728c66a.png","https://azrng.gitee.io/kbms/kbms/common/1665844308787-738ddabc-da31-43b6-a4bd-9be0ffdf04ab.png","https://azrng.gitee.io/kbms/kbms/common/1665844353011-7d0d3c05-4f4b-4dd4-af52-9989a81e349b.png","https://azrng.gitee.io/kbms/kbms/common/1665886329351-b8fb20ce-79e1-4eed-bf80-af6a635d0e29.png","https://azrng.gitee.io/kbms/kbms/common/1665845286503-fa50bdbb-50d3-4224-a441-20b362ec21cf.png","https://azrng.gitee.io/kbms/kbms/common/1665846823299-709de572-91b1-4ab5-b6bc-47b157e6a75a.png","https://azrng.gitee.io/kbms/kbms/common/1665846875139-b5149b0d-f349-44f9-91fa-82db7e976cbf.png"],"datePublished":"2022-11-27T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/cloud/ciAndCd/github/githubactionshengchengjingxiangbingbushu.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="GitHub Action生成镜像并部署"><meta property="og:description" content="目的 通过GitHub的Actions来部署.Net服务到阿里云服务器。 环境准备 需要一个阿里云服务器并且该服务器还安装了docker环境，如果环境安装不清楚可以查看之前的文章。 创建镜像仓库 在阿里云的容器镜像服务中，创建一个镜像仓库用来存储我们测试的镜像，这里我提前创建仓库为myexample，地址为registry.cn-hangzhou.al..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1662964788789-be6dab44-c8d3-47e5-92be-8b39ffad23f6.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2022-11-27T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1f046e495f9c28ef302f30895bda829e";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><title>GitHub Action生成镜像并部署 | 知识库</title><meta name="description" content="目的 通过GitHub的Actions来部署.Net服务到阿里云服务器。 环境准备 需要一个阿里云服务器并且该服务器还安装了docker环境，如果环境安装不清楚可以查看之前的文章。 创建镜像仓库 在阿里云的容器镜像服务中，创建一个镜像仓库用来存储我们测试的镜像，这里我提前创建仓库为myexample，地址为registry.cn-hangzhou.al...">
+    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DO02P82r.js"><link rel="modulepreload" href="/kbms/assets/githubactionshengchengjingxiangbingbushu.html-SJjsGfcc.js"><link rel="modulepreload" href="/kbms/assets/1662964862458-55292112-dc41-4232-96cb-361d761de2f1-_T0vxZKs.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
+    <script type="module" src="/kbms/assets/app-DO02P82r.js" defer></script>
+  </body>
+</html>
