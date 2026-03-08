@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"安装VS2019","image":["https://cdn.jsdelivr.net/gh/azrng/file/blog202212122220584.png","https://cdn.jsdelivr.net/gh/azrng/file/blog202212122221543.png","https://cdn.jsdelivr.net/gh/azrng/file/blog202212122221291.png","https://cdn.jsdelivr.net/gh/azrng/file/blog202212122221688.png","https://cdn.jsdelivr.net/gh/azrng/file/blog202212122221438.png","https://cdn.jsdelivr.net/gh/azrng/file/blog202212122221444.png"],"datePublished":"2021-02-22T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/soft/devTools/VisualStudio/vs2019Install.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="安装VS2019"><meta property="og:description" content="介绍 Visual Studio是最流行的windows平台应用程序集成开发环境，本文示例的版本为VS2019版本，后续的版本多少会有一些差异。 下载 官网地址：https://visualstudio.microsoft.com/zh-hans/vs/ 分为：社区版、专业版、旗舰版。 安装 从官网下载VS2019安装包，双击打开安装包，要求同意许可条..."><meta property="og:type" content="article"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/azrng/file/blog202212122220584.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="VS"><meta property="article:published_time" content="2021-02-22T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"安装VS2019","image":["https://cdn.jsdelivr.net/gh/azrng/file/blog202212122220584.png","https://cdn.jsdelivr.net/gh/azrng/file/blog202212122221543.png","https://cdn.jsdelivr.net/gh/azrng/file/blog202212122221291.png","https://cdn.jsdelivr.net/gh/azrng/file/blog202212122221688.png","https://cdn.jsdelivr.net/gh/azrng/file/blog202212122221438.png","https://cdn.jsdelivr.net/gh/azrng/file/blog202212122221444.png"],"datePublished":"2021-02-22T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/soft/devTools/VisualStudio/vs2019Install.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="安装VS2019"><meta property="og:description" content="介绍 Visual Studio是最流行的windows平台应用程序集成开发环境，本文示例的版本为VS2019版本，后续的版本多少会有一些差异。 下载 官网地址：https://visualstudio.microsoft.com/zh-hans/vs/ 分为：社区版、专业版、旗舰版。 安装 从官网下载VS2019安装包，双击打开安装包，要求同意许可条..."><meta property="og:type" content="article"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/azrng/file/blog202212122220584.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="VS"><meta property="article:published_time" content="2021-02-22T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -38,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>安装VS2019 | 知识库</title><meta name="description" content="介绍 Visual Studio是最流行的windows平台应用程序集成开发环境，本文示例的版本为VS2019版本，后续的版本多少会有一些差异。 下载 官网地址：https://visualstudio.microsoft.com/zh-hans/vs/ 分为：社区版、专业版、旗舰版。 安装 从官网下载VS2019安装包，双击打开安装包，要求同意许可条...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/vs2019Install.html-BR9CyI3I.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/vs2019Install.html-DmTusHHh.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

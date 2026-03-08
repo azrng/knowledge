@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Markdig","image":["https://azrng.gitee.io/kbms/kbms/common/1661053412090-bbee335e-1dae-4c96-8c28-f207f7877b88.png","https://azrng.gitee.io/kbms/kbms/common/1661053380079-ef5aa986-042d-4980-ae25-012a6c2135d4.png"],"datePublished":"2023-04-01T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/middleware/office/markdown/markdig.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="Markdig"><meta property="og:description" content="概述 Markdig 是一款快速、功能强大、符合 CommonMark 标准、可扩展的 Markdown 处理器，适用于 .NET。 下载量：10M 最后更新时间：12天前 操作 安装nuget包 无参数转换为HTML 默认情况下，没有任何选项，Markdig使用的是普通的CommonMark解析器： 经过测试，转换后图片、文字都存在，只不过代码块样式..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1661053412090-bbee335e-1dae-4c96-8c28-f207f7877b88.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-04-01T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Markdig","image":["https://azrng.gitee.io/kbms/knowledge/common/1661053412090-bbee335e-1dae-4c96-8c28-f207f7877b88.png","https://azrng.gitee.io/kbms/knowledge/common/1661053380079-ef5aa986-042d-4980-ae25-012a6c2135d4.png"],"datePublished":"2023-04-01T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/middleware/office/markdown/markdig.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="Markdig"><meta property="og:description" content="概述 Markdig 是一款快速、功能强大、符合 CommonMark 标准、可扩展的 Markdown 处理器，适用于 .NET。 下载量：10M 最后更新时间：12天前 操作 安装nuget包 无参数转换为HTML 默认情况下，没有任何选项，Markdig使用的是普通的CommonMark解析器： 经过测试，转换后图片、文字都存在，只不过代码块样式..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1661053412090-bbee335e-1dae-4c96-8c28-f207f7877b88.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-04-01T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -38,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>Markdig | 知识库</title><meta name="description" content="概述 Markdig 是一款快速、功能强大、符合 CommonMark 标准、可扩展的 Markdown 处理器，适用于 .NET。 下载量：10M 最后更新时间：12天前 操作 安装nuget包 无参数转换为HTML 默认情况下，没有任何选项，Markdig使用的是普通的CommonMark解析器： 经过测试，转换后图片、文字都存在，只不过代码块样式...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/markdig.html-C76nL9cW.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/markdig.html-YqHqpM8V.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

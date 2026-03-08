@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"dotnet生成数据库","image":["https://azrng.gitee.io/kbms/kbms/common/1620543658741-00fd688e-8f23-4709-be13-22766cf2cfe4.png","https://azrng.gitee.io/kbms/kbms/common/1620546536896-91cc7623-b6fa-457c-acec-d465cb06428e.png","https://azrng.gitee.io/kbms/kbms/common/1620546396376-896cc74f-197e-465e-811f-168ff86485c4.png"],"datePublished":"2023-09-12T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dotnet/shujufangwen/dotnetshengchengshujuku.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="dotnet生成数据库"><meta property="og:description" content="开篇语 本文主要是回顾下从项目创建到生成数据到数据库(代码优先)的全部过程。采用EFCore作为ORM框架。 本次示例环境：vs2019、net5、mysql 创建项目 本次事例代码是用过vs2019创建的ASP.NET Core Web API项目 可以通过可视化界面创建或者通过命令行创建 创建实体类 安装组件 增加实体类 这种只是增加实体类类型的一..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1620543658741-00fd688e-8f23-4709-be13-22766cf2cfe4.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-09-12T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"dotnet生成数据库","image":["https://azrng.gitee.io/kbms/knowledge/common/1620543658741-00fd688e-8f23-4709-be13-22766cf2cfe4.png","https://azrng.gitee.io/kbms/knowledge/common/1620546536896-91cc7623-b6fa-457c-acec-d465cb06428e.png","https://azrng.gitee.io/kbms/knowledge/common/1620546396376-896cc74f-197e-465e-811f-168ff86485c4.png"],"datePublished":"2023-09-12T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/dotnet/shujufangwen/dotnetshengchengshujuku.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="dotnet生成数据库"><meta property="og:description" content="开篇语 本文主要是回顾下从项目创建到生成数据到数据库(代码优先)的全部过程。采用EFCore作为ORM框架。 本次示例环境：vs2019、net5、mysql 创建项目 本次事例代码是用过vs2019创建的ASP.NET Core Web API项目 可以通过可视化界面创建或者通过命令行创建 创建实体类 安装组件 增加实体类 这种只是增加实体类类型的一..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1620543658741-00fd688e-8f23-4709-be13-22766cf2cfe4.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-09-12T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -38,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>dotnet生成数据库 | 知识库</title><meta name="description" content="开篇语 本文主要是回顾下从项目创建到生成数据到数据库(代码优先)的全部过程。采用EFCore作为ORM框架。 本次示例环境：vs2019、net5、mysql 创建项目 本次事例代码是用过vs2019创建的ASP.NET Core Web API项目 可以通过可视化界面创建或者通过命令行创建 创建实体类 安装组件 增加实体类 这种只是增加实体类类型的一...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/dotnetshengchengshujuku.html-CNlyqB3g.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/dotnetshengchengshujuku.html-DIYWmKYV.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

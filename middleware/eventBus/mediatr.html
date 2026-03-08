@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"MediatR","image":["https://azrng.gitee.io/kbms/kbms/common/1609838443244-8e178c00-db63-468e-ae97-d7bbf8695096.png"],"datePublished":"2023-08-26T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/middleware/eventBus/mediatr.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="MediatR"><meta property="og:description" content="概述 MediatR是一款基于中介者模式的思想而实现的.NET library，主要是为了解决进程内消息发送与消息处理过程之间的耦合问题。MediatR 提供了一种简洁的方式来协调应用程序内部的消息传递。通过将请求发送给中介者，可以确保每个处理程序只处理与其相关的请求，而不需要直接依赖其他处理程序。 MediatR 的效果可以类比为进程内的事件总线。虽..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1609838443244-8e178c00-db63-468e-ae97-d7bbf8695096.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-08-26T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"MediatR","image":["https://azrng.gitee.io/kbms/knowledge/common/1609838443244-8e178c00-db63-468e-ae97-d7bbf8695096.png"],"datePublished":"2023-08-26T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/middleware/eventBus/mediatr.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="MediatR"><meta property="og:description" content="概述 MediatR是一款基于中介者模式的思想而实现的.NET library，主要是为了解决进程内消息发送与消息处理过程之间的耦合问题。MediatR 提供了一种简洁的方式来协调应用程序内部的消息传递。通过将请求发送给中介者，可以确保每个处理程序只处理与其相关的请求，而不需要直接依赖其他处理程序。 MediatR 的效果可以类比为进程内的事件总线。虽..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1609838443244-8e178c00-db63-468e-ae97-d7bbf8695096.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-08-26T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -38,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>MediatR | 知识库</title><meta name="description" content="概述 MediatR是一款基于中介者模式的思想而实现的.NET library，主要是为了解决进程内消息发送与消息处理过程之间的耦合问题。MediatR 提供了一种简洁的方式来协调应用程序内部的消息传递。通过将请求发送给中介者，可以确保每个处理程序只处理与其相关的请求，而不需要直接依赖其他处理程序。 MediatR 的效果可以类比为进程内的事件总线。虽...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/mediatr.html-DdOR6IBA.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/mediatr.html-C-pci8bJ.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

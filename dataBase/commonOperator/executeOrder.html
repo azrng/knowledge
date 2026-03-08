@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"执行顺序","image":[""],"datePublished":"2024-02-25T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"小松聊PHP进阶"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dataBase/commonOperator/executeOrder.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="执行顺序"><meta property="og:description" content="提示 注意本文是SQL执行顺序，不是MySQL内部执行流程。 MySQL并非像PostgreSQL（被认为是最接近 SQL 标准的数据库之一）一样严格按照SQL标准，MySQL执行引擎会根据查询的具体情况和优化策略来决定具体的执行顺序，所以SQL执行顺序是理论顺序。 书写顺序 执行顺序 SQL书写顺序与执行顺序不一致的原因？ SQL语言设计受到了数学中..."><meta property="og:type" content="article"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="小松聊PHP进阶"><meta property="article:tag" content="执行"><meta property="article:published_time" content="2024-02-25T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"执行顺序","image":[""],"datePublished":"2024-02-25T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"小松聊PHP进阶"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/dataBase/commonOperator/executeOrder.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="执行顺序"><meta property="og:description" content="提示 注意本文是SQL执行顺序，不是MySQL内部执行流程。 MySQL并非像PostgreSQL（被认为是最接近 SQL 标准的数据库之一）一样严格按照SQL标准，MySQL执行引擎会根据查询的具体情况和优化策略来决定具体的执行顺序，所以SQL执行顺序是理论顺序。 书写顺序 执行顺序 SQL书写顺序与执行顺序不一致的原因？ SQL语言设计受到了数学中..."><meta property="og:type" content="article"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="小松聊PHP进阶"><meta property="article:tag" content="执行"><meta property="article:published_time" content="2024-02-25T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -38,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>执行顺序 | 知识库</title><meta name="description" content="提示 注意本文是SQL执行顺序，不是MySQL内部执行流程。 MySQL并非像PostgreSQL（被认为是最接近 SQL 标准的数据库之一）一样严格按照SQL标准，MySQL执行引擎会根据查询的具体情况和优化策略来决定具体的执行顺序，所以SQL执行顺序是理论顺序。 书写顺序 执行顺序 SQL书写顺序与执行顺序不一致的原因？ SQL语言设计受到了数学中...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/executeOrder.html-hj9jmIVN.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/executeOrder.html-Dkv5GdPZ.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"DDD之值对象","image":["https://azrng.gitee.io/kbms/kbms/common/1628521829541-28e87f3c-bc4f-4c6d-8824-b839b8d0cb6a.png","https://azrng.gitee.io/kbms/kbms/common/1628521829652-2ae60861-aa6c-4f16-aa7c-55b8ca9780ba.png"],"datePublished":"2023-09-05T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/softwareDesign/domainDrivenDesign/commonConcept/dddzhizhiduixiang.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="DDD之值对象"><meta property="og:description" content="概述 作为领域驱动设计战术模式中最为核心的一个部分-值对象。一直是被大多数愿意尝试或者正在使用DDD的开发者提及最多的概念之一。但是在学习过程中，大家会因为受到传统开发模式的影响，往往很难去运用值对象这一概念，以及在对值对象进行持久化时感到非常的迷惑。本篇文章会从值对象的概念出发，解释什么是值对象以及怎么运用值对象，并且给出相应的代码片段（本教程的代码..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1628521829541-28e87f3c-bc4f-4c6d-8824-b839b8d0cb6a.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-09-05T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"DDD之值对象","image":["https://azrng.gitee.io/kbms/knowledge/common/1628521829541-28e87f3c-bc4f-4c6d-8824-b839b8d0cb6a.png","https://azrng.gitee.io/kbms/knowledge/common/1628521829652-2ae60861-aa6c-4f16-aa7c-55b8ca9780ba.png"],"datePublished":"2023-09-05T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/softwareDesign/domainDrivenDesign/commonConcept/dddzhizhiduixiang.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="DDD之值对象"><meta property="og:description" content="概述 作为领域驱动设计战术模式中最为核心的一个部分-值对象。一直是被大多数愿意尝试或者正在使用DDD的开发者提及最多的概念之一。但是在学习过程中，大家会因为受到传统开发模式的影响，往往很难去运用值对象这一概念，以及在对值对象进行持久化时感到非常的迷惑。本篇文章会从值对象的概念出发，解释什么是值对象以及怎么运用值对象，并且给出相应的代码片段（本教程的代码..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1628521829541-28e87f3c-bc4f-4c6d-8824-b839b8d0cb6a.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-09-05T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -38,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>DDD之值对象 | 知识库</title><meta name="description" content="概述 作为领域驱动设计战术模式中最为核心的一个部分-值对象。一直是被大多数愿意尝试或者正在使用DDD的开发者提及最多的概念之一。但是在学习过程中，大家会因为受到传统开发模式的影响，往往很难去运用值对象这一概念，以及在对值对象进行持久化时感到非常的迷惑。本篇文章会从值对象的概念出发，解释什么是值对象以及怎么运用值对象，并且给出相应的代码片段（本教程的代码...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/dddzhizhiduixiang.html-K9AmvO9J.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/dddzhizhiduixiang.html-DtDOLHDF.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

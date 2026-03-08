@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"虚拟机玩UOS","image":["https://azrng.gitee.io/kbms/kbms/common/202212101425096.png","https://azrng.gitee.io/kbms/kbms/common/202212101425850.png","https://azrng.gitee.io/kbms/kbms/common/202212101426189.png","https://azrng.gitee.io/kbms/kbms/common/202212101426763.png","https://azrng.gitee.io/kbms/kbms/common/202212101426134.png","https://azrng.gitee.io/kbms/kbms/common/202212101426004.png","https://azrng.gitee.io/kbms/kbms/common/202212101426775.png","https://azrng.gitee.io/kbms/kbms/common/202212101426117.png","https://azrng.gitee.io/kbms/kbms/common/202212101426258.png","https://azrng.gitee.io/kbms/kbms/common/202212101426219.png","https://azrng.gitee.io/kbms/kbms/common/202212101426236.png","https://azrng.gitee.io/kbms/kbms/common/202212101427603.png","https://azrng.gitee.io/kbms/kbms/common/202212101427327.png","https://azrng.gitee.io/kbms/kbms/common/202212101427761.png","https://azrng.gitee.io/kbms/kbms/common/202212101427588.png","https://azrng.gitee.io/kbms/kbms/common/202212101427604.png","https://azrng.gitee.io/kbms/kbms/common/202212101427525.png","https://azrng.gitee.io/kbms/kbms/common/202212101427064.png","https://azrng.gitee.io/kbms/kbms/common/202212101427495.png","https://azrng.gitee.io/kbms/kbms/common/202212101427200.png","https://azrng.gitee.io/kbms/kbms/common/202212101427140.png"],"datePublished":"2021-02-22T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/soft/virtualMachine/uos.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="虚拟机玩UOS"><meta property="og:description" content="安装 使用Hyper-v创建虚拟机安装uos系统，关于Hyper-V的基本用法可以看另一个文章 imgimg 选择语言然后同意协议点击下一步进入硬盘分区，这里需要满足一定的磁盘大小才能下一步 imgimg 选择盘符然后直接下一步，就开始漫长的安装步骤 imgimg 安装完成 imgimg 上面提示安装成功点击立即重启并立即拔出安装介质，可是我不是用U盘..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/202212101425096.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="uos"><meta property="article:published_time" content="2021-02-22T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"虚拟机玩UOS","image":["https://azrng.gitee.io/kbms/knowledge/common/202212101425096.png","https://azrng.gitee.io/kbms/knowledge/common/202212101425850.png","https://azrng.gitee.io/kbms/knowledge/common/202212101426189.png","https://azrng.gitee.io/kbms/knowledge/common/202212101426763.png","https://azrng.gitee.io/kbms/knowledge/common/202212101426134.png","https://azrng.gitee.io/kbms/knowledge/common/202212101426004.png","https://azrng.gitee.io/kbms/knowledge/common/202212101426775.png","https://azrng.gitee.io/kbms/knowledge/common/202212101426117.png","https://azrng.gitee.io/kbms/knowledge/common/202212101426258.png","https://azrng.gitee.io/kbms/knowledge/common/202212101426219.png","https://azrng.gitee.io/kbms/knowledge/common/202212101426236.png","https://azrng.gitee.io/kbms/knowledge/common/202212101427603.png","https://azrng.gitee.io/kbms/knowledge/common/202212101427327.png","https://azrng.gitee.io/kbms/knowledge/common/202212101427761.png","https://azrng.gitee.io/kbms/knowledge/common/202212101427588.png","https://azrng.gitee.io/kbms/knowledge/common/202212101427604.png","https://azrng.gitee.io/kbms/knowledge/common/202212101427525.png","https://azrng.gitee.io/kbms/knowledge/common/202212101427064.png","https://azrng.gitee.io/kbms/knowledge/common/202212101427495.png","https://azrng.gitee.io/kbms/knowledge/common/202212101427200.png","https://azrng.gitee.io/kbms/knowledge/common/202212101427140.png"],"datePublished":"2021-02-22T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/soft/virtualMachine/uos.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="虚拟机玩UOS"><meta property="og:description" content="安装 使用Hyper-v创建虚拟机安装uos系统，关于Hyper-V的基本用法可以看另一个文章 imgimg 选择语言然后同意协议点击下一步进入硬盘分区，这里需要满足一定的磁盘大小才能下一步 imgimg 选择盘符然后直接下一步，就开始漫长的安装步骤 imgimg 安装完成 imgimg 上面提示安装成功点击立即重启并立即拔出安装介质，可是我不是用U盘..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/202212101425096.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="uos"><meta property="article:published_time" content="2021-02-22T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -38,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>虚拟机玩UOS | 知识库</title><meta name="description" content="安装 使用Hyper-v创建虚拟机安装uos系统，关于Hyper-V的基本用法可以看另一个文章 imgimg 选择语言然后同意协议点击下一步进入硬盘分区，这里需要满足一定的磁盘大小才能下一步 imgimg 选择盘符然后直接下一步，就开始漫长的安装步骤 imgimg 安装完成 imgimg 上面提示安装成功点击立即重启并立即拔出安装介质，可是我不是用U盘...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/uos.html-CY_yu9MU.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/uos.html-j7oLRkiA.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"HttpClient说明","image":["https://azrng.gitee.io/kbms/kbms/common/1635605991421-e45c7e7c-3483-4585-8782-a050aa13d72f.png","https://azrng.gitee.io/kbms/kbms/common/1635607127494-0ee82640-00a3-498e-ac59-da4150c70f06.png","https://azrng.gitee.io/kbms/kbms/common/1625323593371-e81fe980-f753-4f15-bd54-c543fff7bde3.png","https://azrng.gitee.io/kbms/kbms/common/1625242924090-22336f06-e45b-4e02-89b7-54eaccc1b2a5.png","https://azrng.gitee.io/kbms/kbms/common/1625242992263-d6e0fced-eb12-4168-86ef-caafaa1696b2.png"],"datePublished":"2023-10-05T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dotnet/api/remoteProcedureCall/httpclient.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="HttpClient说明"><meta property="og:description" content="概述 HttpClient是用户进行HTTP请求的，不过在我释放HttpClient对象时候，基础套接字不会立即释放，所以可能导致套接字耗尽，最终导致SocketException错误，所以推荐使用HttpClientFactory。 底层方法 HttpClient底层调用是 而handler正是我们通过HttpClient传递下来的HttpMessa..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1635605991421-e45c7e7c-3483-4585-8782-a050aa13d72f.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="httpClient"><meta property="article:published_time" content="2023-10-05T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"HttpClient说明","image":["https://azrng.gitee.io/kbms/knowledge/common/1635605991421-e45c7e7c-3483-4585-8782-a050aa13d72f.png","https://azrng.gitee.io/kbms/knowledge/common/1635607127494-0ee82640-00a3-498e-ac59-da4150c70f06.png","https://azrng.gitee.io/kbms/knowledge/common/1625323593371-e81fe980-f753-4f15-bd54-c543fff7bde3.png","https://azrng.gitee.io/kbms/knowledge/common/1625242924090-22336f06-e45b-4e02-89b7-54eaccc1b2a5.png","https://azrng.gitee.io/kbms/knowledge/common/1625242992263-d6e0fced-eb12-4168-86ef-caafaa1696b2.png"],"datePublished":"2023-10-05T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/dotnet/api/remoteProcedureCall/httpclient.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="HttpClient说明"><meta property="og:description" content="概述 HttpClient是用户进行HTTP请求的，不过在我释放HttpClient对象时候，基础套接字不会立即释放，所以可能导致套接字耗尽，最终导致SocketException错误，所以推荐使用HttpClientFactory。 底层方法 HttpClient底层调用是 而handler正是我们通过HttpClient传递下来的HttpMessa..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1635605991421-e45c7e7c-3483-4585-8782-a050aa13d72f.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="httpClient"><meta property="article:published_time" content="2023-10-05T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -38,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>HttpClient说明 | 知识库</title><meta name="description" content="概述 HttpClient是用户进行HTTP请求的，不过在我释放HttpClient对象时候，基础套接字不会立即释放，所以可能导致套接字耗尽，最终导致SocketException错误，所以推荐使用HttpClientFactory。 底层方法 HttpClient底层调用是 而handler正是我们通过HttpClient传递下来的HttpMessa...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/httpclient.html-J8RDAJ4f.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/httpclient.html-mKZIRtUw.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"系统日志规范及最佳实践","image":["https://azrng.gitee.io/kbms/kbms/common/82d54715695043cf816221f6414771d0.png","https://azrng.gitee.io/kbms/kbms/common/b10686f82b804f2a98ce4369b907f7da.png"],"datePublished":"2023-09-24T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"蓝旺(导弹)"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/softwareDesign/systemDesign/systemLogOperation.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="系统日志规范及最佳实践"><meta property="og:description" content="概要 1.1 什么是日志？ 日志，维基百科中对其的定义是一个或多个由服务器自动创建和维护的日志文件，其中包含其所执行活动的列表。 一个打印良好的日志文件可为开发人员提供精确的系统记录，可辅助开发人员定位到系统错误发生的详情及根源。在应用程序中，通常使用日志文件来记录应用程序运行过程中的重要逻辑参数及异常错误，辅之日志采集系统(ELK、DTM)构建系统监..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/82d54715695043cf816221f6414771d0.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="蓝旺(导弹)"><meta property="article:tag" content="log"><meta property="article:published_time" content="2023-09-24T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"系统日志规范及最佳实践","image":["https://azrng.gitee.io/kbms/knowledge/common/82d54715695043cf816221f6414771d0.png","https://azrng.gitee.io/kbms/knowledge/common/b10686f82b804f2a98ce4369b907f7da.png"],"datePublished":"2023-09-24T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"蓝旺(导弹)"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/softwareDesign/systemDesign/systemLogOperation.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="系统日志规范及最佳实践"><meta property="og:description" content="概要 1.1 什么是日志？ 日志，维基百科中对其的定义是一个或多个由服务器自动创建和维护的日志文件，其中包含其所执行活动的列表。 一个打印良好的日志文件可为开发人员提供精确的系统记录，可辅助开发人员定位到系统错误发生的详情及根源。在应用程序中，通常使用日志文件来记录应用程序运行过程中的重要逻辑参数及异常错误，辅之日志采集系统(ELK、DTM)构建系统监..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/82d54715695043cf816221f6414771d0.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="蓝旺(导弹)"><meta property="article:tag" content="log"><meta property="article:published_time" content="2023-09-24T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -38,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>系统日志规范及最佳实践 | 知识库</title><meta name="description" content="概要 1.1 什么是日志？ 日志，维基百科中对其的定义是一个或多个由服务器自动创建和维护的日志文件，其中包含其所执行活动的列表。 一个打印良好的日志文件可为开发人员提供精确的系统记录，可辅助开发人员定位到系统错误发生的详情及根源。在应用程序中，通常使用日志文件来记录应用程序运行过程中的重要逻辑参数及异常错误，辅之日志采集系统(ELK、DTM)构建系统监...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/systemLogOperation.html-B2cyS4pi.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/systemLogOperation.html-seGRqwY7.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

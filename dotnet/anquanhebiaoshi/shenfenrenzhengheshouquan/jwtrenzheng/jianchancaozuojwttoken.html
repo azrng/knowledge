@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"简单操作JWT Token","image":["https://azrng.gitee.io/kbms/kbms/common/1614697643706-a618f2c1-ea39-4d6a-8cf8-75078edbf5af.png","https://azrng.gitee.io/kbms/kbms/common/1625582630614-e6531c35-e9bd-47fc-986a-cae3c354d88d.png","https://azrng.gitee.io/kbms/kbms/common/1625582802887-b4d4e9f0-f868-4d4f-9814-e1e213909c88.png","https://azrng.gitee.io/kbms/kbms/common/1625583521852-45192eb4-4cd7-46a2-b7ea-e7044f16d36f.png","https://azrng.gitee.io/kbms/kbms/common/1625583551251-7e893c5b-47ce-4f04-aa82-2e0ad4ab5415.png","https://azrng.gitee.io/kbms/kbms/common/1625583832713-97462c89-f539-4fc5-86e5-8834ed48a33b.png"],"datePublished":"2023-09-14T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dotnet/anquanhebiaoshi/shenfenrenzhengheshouquan/jwtrenzheng/jianchancaozuojwttoken.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="简单操作JWT Token"><meta property="og:description" content="开篇语 示例环境：vs2022、.net5 框架：WebAPI image.png 引用组件 引用nuget包 颁发 在appsettings中配置文章jwt信息 在登录成功的时候我们会颁发token给前端，前端存储token并且在后续的每次请求都携带token来访问。然后新建控制器并添加下面的代码 调用上面的接口会生成token，解析我们生成toke..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1614697643706-a618f2c1-ea39-4d6a-8cf8-75078edbf5af.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-09-14T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"简单操作JWT Token","image":["https://azrng.gitee.io/kbms/knowledge/common/1614697643706-a618f2c1-ea39-4d6a-8cf8-75078edbf5af.png","https://azrng.gitee.io/kbms/knowledge/common/1625582630614-e6531c35-e9bd-47fc-986a-cae3c354d88d.png","https://azrng.gitee.io/kbms/knowledge/common/1625582802887-b4d4e9f0-f868-4d4f-9814-e1e213909c88.png","https://azrng.gitee.io/kbms/knowledge/common/1625583521852-45192eb4-4cd7-46a2-b7ea-e7044f16d36f.png","https://azrng.gitee.io/kbms/knowledge/common/1625583551251-7e893c5b-47ce-4f04-aa82-2e0ad4ab5415.png","https://azrng.gitee.io/kbms/knowledge/common/1625583832713-97462c89-f539-4fc5-86e5-8834ed48a33b.png"],"datePublished":"2023-09-14T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/dotnet/anquanhebiaoshi/shenfenrenzhengheshouquan/jwtrenzheng/jianchancaozuojwttoken.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="简单操作JWT Token"><meta property="og:description" content="开篇语 示例环境：vs2022、.net5 框架：WebAPI image.png 引用组件 引用nuget包 颁发 在appsettings中配置文章jwt信息 在登录成功的时候我们会颁发token给前端，前端存储token并且在后续的每次请求都携带token来访问。然后新建控制器并添加下面的代码 调用上面的接口会生成token，解析我们生成toke..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1614697643706-a618f2c1-ea39-4d6a-8cf8-75078edbf5af.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-09-14T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -38,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>简单操作JWT Token | 知识库</title><meta name="description" content="开篇语 示例环境：vs2022、.net5 框架：WebAPI image.png 引用组件 引用nuget包 颁发 在appsettings中配置文章jwt信息 在登录成功的时候我们会颁发token给前端，前端存储token并且在后续的每次请求都携带token来访问。然后新建控制器并添加下面的代码 调用上面的接口会生成token，解析我们生成toke...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/jianchancaozuojwttoken.html-Aus--2nu.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/jianchancaozuojwttoken.html-Bk4ZxI99.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

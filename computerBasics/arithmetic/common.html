@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"常用算法","image":["https://azrng.gitee.io/kbms/kbms/common/1644500363642-6e1f64b2-41d1-4cbf-9039-4e1c41f81457.jpeg","https://azrng.gitee.io/kbms/kbms/common/1625387586186-1e35110a-662d-48fe-b850-8506f631c92b.webp","https://azrng.gitee.io/kbms/kbms/common/1625387610658-1140e524-c417-4e11-8942-858c0f3563a5.webp","https://azrng.gitee.io/kbms/kbms/common/1625387671656-ad7c0d10-ef66-403f-8505-0a90d55b3777.webp"],"datePublished":"2022-02-10T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/computerBasics/arithmetic/common.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="常用算法"><meta property="og:description" content="概述 加密算法的目的是：在于使得别人无法查看加密的数据，并且在需要的时候还可以对数据进行解密来重新查看数据。 哈希算法的目的是：它在大多数情况下都是不可逆的，即时你通过哈希算法得到的数据，无法经过任何算法还原回去，使用场景之一是验证参数是否被修改。 算法 加密算法 加密：是以某种特殊的算法改变原有的信息，使得未授权的用户即使获得已加密的信息，但因不知解..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1644500363642-6e1f64b2-41d1-4cbf-9039-4e1c41f81457.jpeg"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2022-02-10T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"常用算法","image":["https://azrng.gitee.io/kbms/knowledge/common/1644500363642-6e1f64b2-41d1-4cbf-9039-4e1c41f81457.jpeg","https://azrng.gitee.io/kbms/knowledge/common/1625387586186-1e35110a-662d-48fe-b850-8506f631c92b.webp","https://azrng.gitee.io/kbms/knowledge/common/1625387610658-1140e524-c417-4e11-8942-858c0f3563a5.webp","https://azrng.gitee.io/kbms/knowledge/common/1625387671656-ad7c0d10-ef66-403f-8505-0a90d55b3777.webp"],"datePublished":"2022-02-10T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/computerBasics/arithmetic/common.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="常用算法"><meta property="og:description" content="概述 加密算法的目的是：在于使得别人无法查看加密的数据，并且在需要的时候还可以对数据进行解密来重新查看数据。 哈希算法的目的是：它在大多数情况下都是不可逆的，即时你通过哈希算法得到的数据，无法经过任何算法还原回去，使用场景之一是验证参数是否被修改。 算法 加密算法 加密：是以某种特殊的算法改变原有的信息，使得未授权的用户即使获得已加密的信息，但因不知解..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1644500363642-6e1f64b2-41d1-4cbf-9039-4e1c41f81457.jpeg"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2022-02-10T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -38,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>常用算法 | 知识库</title><meta name="description" content="概述 加密算法的目的是：在于使得别人无法查看加密的数据，并且在需要的时候还可以对数据进行解密来重新查看数据。 哈希算法的目的是：它在大多数情况下都是不可逆的，即时你通过哈希算法得到的数据，无法经过任何算法还原回去，使用场景之一是验证参数是否被修改。 算法 加密算法 加密：是以某种特殊的算法改变原有的信息，使得未授权的用户即使获得已加密的信息，但因不知解...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/common.html-CyY-Lz0f.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/common.html-DTh6ZccQ.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

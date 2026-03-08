@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"DBCHM","image":["https://azrng.gitee.io/kbms/kbms/common/1622474622396-42a922a7-8354-4582-a261-49f875f9cb5d.png","https://azrng.gitee.io/kbms/kbms/common/1622474679073-add98e0f-046a-4959-98ea-4e9698504468.png","https://azrng.gitee.io/kbms/kbms/common/1622474698421-e1b64337-2b82-4551-aa59-34962c86f1e4.png","https://azrng.gitee.io/kbms/kbms/common/1622474985064-5de1ad44-1aa5-4f1d-bcb9-1ec78a85aeb3.png","https://azrng.gitee.io/kbms/kbms/common/1622475071132-f7b3d61f-be23-4729-a01b-c9a22d38fb10.png"],"datePublished":"2023-03-24T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/soft/devTools/dbTools/dbchm.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="DBCHM"><meta property="og:description" content="概述 DBHCM 是一个对数据库文档生成工具！ 该工具从最初支持chm文档格式开始，通过开源，大家集思广益，不断改进，又陆续支持word、excel、pdf、html、xml、markdown等文档格式的导出。本项目力求做最简单、最实用的数据库文档(字典)生成工具！ 支持的数据库：sqlsever、mysql、oracle、postgresql、db2..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1622474622396-42a922a7-8354-4582-a261-49f875f9cb5d.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:published_time" content="2023-03-24T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"DBCHM","image":["https://azrng.gitee.io/kbms/knowledge/common/1622474622396-42a922a7-8354-4582-a261-49f875f9cb5d.png","https://azrng.gitee.io/kbms/knowledge/common/1622474679073-add98e0f-046a-4959-98ea-4e9698504468.png","https://azrng.gitee.io/kbms/knowledge/common/1622474698421-e1b64337-2b82-4551-aa59-34962c86f1e4.png","https://azrng.gitee.io/kbms/knowledge/common/1622474985064-5de1ad44-1aa5-4f1d-bcb9-1ec78a85aeb3.png","https://azrng.gitee.io/kbms/knowledge/common/1622475071132-f7b3d61f-be23-4729-a01b-c9a22d38fb10.png"],"datePublished":"2023-03-24T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/soft/devTools/dbTools/dbchm.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="DBCHM"><meta property="og:description" content="概述 DBHCM 是一个对数据库文档生成工具！ 该工具从最初支持chm文档格式开始，通过开源，大家集思广益，不断改进，又陆续支持word、excel、pdf、html、xml、markdown等文档格式的导出。本项目力求做最简单、最实用的数据库文档(字典)生成工具！ 支持的数据库：sqlsever、mysql、oracle、postgresql、db2..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1622474622396-42a922a7-8354-4582-a261-49f875f9cb5d.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:published_time" content="2023-03-24T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -38,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>DBCHM | 知识库</title><meta name="description" content="概述 DBHCM 是一个对数据库文档生成工具！ 该工具从最初支持chm文档格式开始，通过开源，大家集思广益，不断改进，又陆续支持word、excel、pdf、html、xml、markdown等文档格式的导出。本项目力求做最简单、最实用的数据库文档(字典)生成工具！ 支持的数据库：sqlsever、mysql、oracle、postgresql、db2...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/dbchm.html-bS_qJ5P1.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/dbchm.html-CDoHyuMd.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

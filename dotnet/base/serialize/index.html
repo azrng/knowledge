@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"说明","image":["https://azrng.gitee.io/kbms/kbms/common/1643209935836-5d34426a-c9d4-469b-ae24-35b3cbf8f3f3.gif","https://azrng.gitee.io/kbms/kbms/common/1643209449243-64ba2184-0c09-4c1e-bcad-a9b22a338964.png"],"datePublished":"2023-07-06T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dotnet/base/serialize/"><meta property="og:site_name" content="知识库"><meta property="og:title" content="说明"><meta property="og:description" content="概述 序列化：将对象的状态信息以及类型信息，转换为一种易于传输或者存储形式(流，即字节序列)的过程。 序列化整理流程(图片来自微软官网) 该对象被序列化为携带数据的流。该流还可能包含有关对象类型的信息，例如其版本、文化和程序集名称。从该流中，对象可以存储在数据库、文件或内存中。 反序列化：与序列化相反，将流转换为对象的过程。 常见的序列化格式和方法 在..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1643209935836-5d34426a-c9d4-469b-ae24-35b3cbf8f3f3.gif"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="serialize"><meta property="article:published_time" content="2023-07-06T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"说明","image":["https://azrng.gitee.io/kbms/knowledge/common/1643209935836-5d34426a-c9d4-469b-ae24-35b3cbf8f3f3.gif","https://azrng.gitee.io/kbms/knowledge/common/1643209449243-64ba2184-0c09-4c1e-bcad-a9b22a338964.png"],"datePublished":"2023-07-06T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/dotnet/base/serialize/"><meta property="og:site_name" content="知识库"><meta property="og:title" content="说明"><meta property="og:description" content="概述 序列化：将对象的状态信息以及类型信息，转换为一种易于传输或者存储形式(流，即字节序列)的过程。 序列化整理流程(图片来自微软官网) 该对象被序列化为携带数据的流。该流还可能包含有关对象类型的信息，例如其版本、文化和程序集名称。从该流中，对象可以存储在数据库、文件或内存中。 反序列化：与序列化相反，将流转换为对象的过程。 常见的序列化格式和方法 在..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1643209935836-5d34426a-c9d4-469b-ae24-35b3cbf8f3f3.gif"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="serialize"><meta property="article:published_time" content="2023-07-06T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -38,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>说明 | 知识库</title><meta name="description" content="概述 序列化：将对象的状态信息以及类型信息，转换为一种易于传输或者存储形式(流，即字节序列)的过程。 序列化整理流程(图片来自微软官网) 该对象被序列化为携带数据的流。该流还可能包含有关对象类型的信息，例如其版本、文化和程序集名称。从该流中，对象可以存储在数据库、文件或内存中。 反序列化：与序列化相反，将流转换为对象的过程。 常见的序列化格式和方法 在...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/index.html-BLbOX9iH.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/index.html-C-YScR9b.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

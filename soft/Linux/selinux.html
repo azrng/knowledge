@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"SELinux","image":["https://azrng.gitee.io/kbms/kbms/common/1640224604129-d52b5275-f6dc-4669-b1a7-89aa2b390bb6.png","https://azrng.gitee.io/kbms/kbms/common/1641138785342-792c1b58-f8e0-4579-b2e8-a848294e160e.png"],"datePublished":"2023-07-22T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/soft/Linux/selinux.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="SELinux"><meta property="og:description" content="介绍 SELinux一共有三种状态。 Enforcing：默认状态，强制启用，状态值是1 Permissive：宽容，大部分规则都放行，状态值是0 Disabled：禁用，不设置任何规则 操作 关闭 先查询当前的状态 编辑配置文件/etc/selinux/config 修改selinux的值为disabledimage.png重启服务器 添加配置 演示..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1640224604129-d52b5275-f6dc-4669-b1a7-89aa2b390bb6.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-07-22T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"SELinux","image":["https://azrng.gitee.io/kbms/knowledge/common/1640224604129-d52b5275-f6dc-4669-b1a7-89aa2b390bb6.png","https://azrng.gitee.io/kbms/knowledge/common/1641138785342-792c1b58-f8e0-4579-b2e8-a848294e160e.png"],"datePublished":"2023-07-22T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/soft/Linux/selinux.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="SELinux"><meta property="og:description" content="介绍 SELinux一共有三种状态。 Enforcing：默认状态，强制启用，状态值是1 Permissive：宽容，大部分规则都放行，状态值是0 Disabled：禁用，不设置任何规则 操作 关闭 先查询当前的状态 编辑配置文件/etc/selinux/config 修改selinux的值为disabledimage.png重启服务器 添加配置 演示..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1640224604129-d52b5275-f6dc-4669-b1a7-89aa2b390bb6.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-07-22T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -38,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>SELinux | 知识库</title><meta name="description" content="介绍 SELinux一共有三种状态。 Enforcing：默认状态，强制启用，状态值是1 Permissive：宽容，大部分规则都放行，状态值是0 Disabled：禁用，不设置任何规则 操作 关闭 先查询当前的状态 编辑配置文件/etc/selinux/config 修改selinux的值为disabledimage.png重启服务器 添加配置 演示...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/selinux.html-B6zRhlBG.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/selinux.html-Ci0eLIbP.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

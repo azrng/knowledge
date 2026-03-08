@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"xUnit","image":["https://azrng.gitee.io/kbms/kbms/common/1676439707756-ba969083-a7ab-48bf-bea7-8aa4ed63738d.png","https://azrng.gitee.io/kbms/kbms/common/1631872707111-5bc7e39a-e7c5-484d-88e3-2687849ea4a9.png","https://azrng.gitee.io/kbms/kbms/common/1631872791679-fd470686-fef4-4c00-b540-f7a6e27c2019.png","https://azrng.gitee.io/kbms/kbms/common/1631975072340-e40ce55e-c83a-45f7-9213-00374223b06c.png","https://azrng.gitee.io/kbms/kbms/common/1631976003428-be50fafe-b02e-48a0-b4e0-b75a6297b9f2.png","https://azrng.gitee.io/kbms/kbms/common/1631876238234-b6957159-6ddf-4415-b19e-974ae7084451.png","https://azrng.gitee.io/kbms/kbms/common/1631877298918-c66d17bd-c606-4915-8650-26f3d4f4ab17.png"],"datePublished":"2023-10-18T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/middleware/testMange/unitTest/xunitTest.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="xUnit"><meta property="og:description" content="概述 xUnit 是一个针对 .NET 平台的开源单元测试框架，用于编写和执行自动化单元测试，常用来测试指定的方法。 官网：https://xunit.net/ 操作 快速上手 创建单元测试项目 本次文章还在原来项目的基础上进行操作(https://gitee.com/AZRNG/my-example)，右键解决方案添加单元测试项目 image.png..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1676439707756-ba969083-a7ab-48bf-bea7-8aa4ed63738d.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="test"><meta property="article:published_time" content="2023-10-18T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"xUnit","image":["https://azrng.gitee.io/kbms/knowledge/common/1676439707756-ba969083-a7ab-48bf-bea7-8aa4ed63738d.png","https://azrng.gitee.io/kbms/knowledge/common/1631872707111-5bc7e39a-e7c5-484d-88e3-2687849ea4a9.png","https://azrng.gitee.io/kbms/knowledge/common/1631872791679-fd470686-fef4-4c00-b540-f7a6e27c2019.png","https://azrng.gitee.io/kbms/knowledge/common/1631975072340-e40ce55e-c83a-45f7-9213-00374223b06c.png","https://azrng.gitee.io/kbms/knowledge/common/1631976003428-be50fafe-b02e-48a0-b4e0-b75a6297b9f2.png","https://azrng.gitee.io/kbms/knowledge/common/1631876238234-b6957159-6ddf-4415-b19e-974ae7084451.png","https://azrng.gitee.io/kbms/knowledge/common/1631877298918-c66d17bd-c606-4915-8650-26f3d4f4ab17.png"],"datePublished":"2023-10-18T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/middleware/testMange/unitTest/xunitTest.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="xUnit"><meta property="og:description" content="概述 xUnit 是一个针对 .NET 平台的开源单元测试框架，用于编写和执行自动化单元测试，常用来测试指定的方法。 官网：https://xunit.net/ 操作 快速上手 创建单元测试项目 本次文章还在原来项目的基础上进行操作(https://gitee.com/AZRNG/my-example)，右键解决方案添加单元测试项目 image.png..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1676439707756-ba969083-a7ab-48bf-bea7-8aa4ed63738d.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="test"><meta property="article:published_time" content="2023-10-18T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -38,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>xUnit | 知识库</title><meta name="description" content="概述 xUnit 是一个针对 .NET 平台的开源单元测试框架，用于编写和执行自动化单元测试，常用来测试指定的方法。 官网：https://xunit.net/ 操作 快速上手 创建单元测试项目 本次文章还在原来项目的基础上进行操作(https://gitee.com/AZRNG/my-example)，右键解决方案添加单元测试项目 image.png...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/xunitTest.html-CX83vkkc.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/xunitTest.html-vT9soYjq.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

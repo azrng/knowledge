@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Git基础操作","image":["https://azrng.gitee.io/kbms/kbms/soft/8c0a8152f83c5fdd87c3ac1ff33199d.jpg","https://azrng.gitee.io/kbms/kbms/common/1609895695392-9b9f4eb4-703d-4b3e-a621-d17143df75c1.png","https://azrng.gitee.io/kbms/kbms/common/1609895695421-5c38cc4f-5bc9-49eb-b9b6-6f3b2ea97230.png","https://azrng.gitee.io/kbms/kbms/common/1609895695405-c17db9d4-1956-4dec-ac6e-c36ae2c15d85.png","https://azrng.gitee.io/kbms/kbms/common/1609895695399-37daa1e4-3a25-44d7-b36e-9e57a9784930.png","https://azrng.gitee.io/kbms/kbms/common/1609895695407-ba594cb2-2db3-4aec-9a99-39f1a8ccd752.png","https://azrng.gitee.io/kbms/kbms/common/1609895695441-6acb1f2a-2668-4192-a73b-ba538c62b468.png","https://azrng.gitee.io/kbms/kbms/common/1609895695408-a48c801a-985a-4254-a6ab-f9c58c75d87d.png","https://azrng.gitee.io/kbms/kbms/common/1609895695418-f9828876-0c63-4fec-826c-19e8374d96fd.png","https://azrng.gitee.io/kbms/kbms/common/1609895695414-4e4fb09d-7687-41d3-9525-d360df177320.png"],"datePublished":"2023-07-22T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/soft/devTools/sourceCodeManage/gitjichucaozuo.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="Git基础操作"><meta property="og:description" content="命令速查 8c0a8152f83c5fdd87c3ac1ff33199d8c0a8152f83c5fdd87c3ac1ff33199d 基本流程 创建仓库 可以创建本地仓库或者拉取远程创建好的仓库 创建本地仓库 将本地一个文件夹变为Git可以管理的仓库，并且添加远程地址，然后拉取项目 拉取远程仓库 Git创建版本库 版本库又叫做仓库，英文名称是repo..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/soft/8c0a8152f83c5fdd87c3ac1ff33199d.jpg"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-07-22T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Git基础操作","image":["https://azrng.gitee.io/kbms/knowledge/soft/8c0a8152f83c5fdd87c3ac1ff33199d.jpg","https://azrng.gitee.io/kbms/knowledge/common/1609895695392-9b9f4eb4-703d-4b3e-a621-d17143df75c1.png","https://azrng.gitee.io/kbms/knowledge/common/1609895695421-5c38cc4f-5bc9-49eb-b9b6-6f3b2ea97230.png","https://azrng.gitee.io/kbms/knowledge/common/1609895695405-c17db9d4-1956-4dec-ac6e-c36ae2c15d85.png","https://azrng.gitee.io/kbms/knowledge/common/1609895695399-37daa1e4-3a25-44d7-b36e-9e57a9784930.png","https://azrng.gitee.io/kbms/knowledge/common/1609895695407-ba594cb2-2db3-4aec-9a99-39f1a8ccd752.png","https://azrng.gitee.io/kbms/knowledge/common/1609895695441-6acb1f2a-2668-4192-a73b-ba538c62b468.png","https://azrng.gitee.io/kbms/knowledge/common/1609895695408-a48c801a-985a-4254-a6ab-f9c58c75d87d.png","https://azrng.gitee.io/kbms/knowledge/common/1609895695418-f9828876-0c63-4fec-826c-19e8374d96fd.png","https://azrng.gitee.io/kbms/knowledge/common/1609895695414-4e4fb09d-7687-41d3-9525-d360df177320.png"],"datePublished":"2023-07-22T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/soft/devTools/sourceCodeManage/gitjichucaozuo.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="Git基础操作"><meta property="og:description" content="命令速查 8c0a8152f83c5fdd87c3ac1ff33199d8c0a8152f83c5fdd87c3ac1ff33199d 基本流程 创建仓库 可以创建本地仓库或者拉取远程创建好的仓库 创建本地仓库 将本地一个文件夹变为Git可以管理的仓库，并且添加远程地址，然后拉取项目 拉取远程仓库 Git创建版本库 版本库又叫做仓库，英文名称是repo..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/soft/8c0a8152f83c5fdd87c3ac1ff33199d.jpg"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-07-22T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -38,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>Git基础操作 | 知识库</title><meta name="description" content="命令速查 8c0a8152f83c5fdd87c3ac1ff33199d8c0a8152f83c5fdd87c3ac1ff33199d 基本流程 创建仓库 可以创建本地仓库或者拉取远程创建好的仓库 创建本地仓库 将本地一个文件夹变为Git可以管理的仓库，并且添加远程地址，然后拉取项目 拉取远程仓库 Git创建版本库 版本库又叫做仓库，英文名称是repo...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/gitjichucaozuo.html-CURiPR3D.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/gitjichucaozuo.html-3ZHL2WHR.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

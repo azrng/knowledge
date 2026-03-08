@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"说明","image":["https://azrng.gitee.io/kbms/kbms/common/1662964788789-be6dab44-c8d3-47e5-92be-8b39ffad23f6.png","https://azrng.gitee.io/kbms/kbms/common/1662964862458-55292112-dc41-4232-96cb-361d761de2f1.png","https://azrng.gitee.io/kbms/kbms/common/1662965030882-327a67e5-f6cb-492e-a62a-7e7430ddf13b.png","https://azrng.gitee.io/kbms/kbms/common/1662965868627-6edb9591-e487-40e2-a526-bdf87583fea6.png","https://azrng.gitee.io/kbms/kbms/common/1662969378474-f911182d-c2eb-4481-a9b8-1af708062845.png"],"datePublished":"2023-09-08T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/cloud/ciAndCd/github/"><meta property="og:site_name" content="知识库"><meta property="og:title" content="说明"><meta property="og:description" content="概述 通过github的Action可以实现在提交代码的时候，自动将程序部署到指定的服务器上(公网服务器)。 服务器配置 在指定的仓库中，选择Settings=>Secrets=>Actions image.pngimage.png 点击右上的新建就可以创建想要保存的隐私配置信息 image.pngimage.png 这里我保存了一下服务器的地址、账号..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1662964788789-be6dab44-c8d3-47e5-92be-8b39ffad23f6.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-09-08T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"说明","image":["https://azrng.gitee.io/kbms/knowledge/common/1662964788789-be6dab44-c8d3-47e5-92be-8b39ffad23f6.png","https://azrng.gitee.io/kbms/knowledge/common/1662964862458-55292112-dc41-4232-96cb-361d761de2f1.png","https://azrng.gitee.io/kbms/knowledge/common/1662965030882-327a67e5-f6cb-492e-a62a-7e7430ddf13b.png","https://azrng.gitee.io/kbms/knowledge/common/1662965868627-6edb9591-e487-40e2-a526-bdf87583fea6.png","https://azrng.gitee.io/kbms/knowledge/common/1662969378474-f911182d-c2eb-4481-a9b8-1af708062845.png"],"datePublished":"2023-09-08T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/cloud/ciAndCd/github/"><meta property="og:site_name" content="知识库"><meta property="og:title" content="说明"><meta property="og:description" content="概述 通过github的Action可以实现在提交代码的时候，自动将程序部署到指定的服务器上(公网服务器)。 服务器配置 在指定的仓库中，选择Settings=&gt;Secrets=&gt;Actions image.pngimage.png 点击右上的新建就可以创建想要保存的隐私配置信息 image.pngimage.png 这里我保存了一下服务器..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1662964788789-be6dab44-c8d3-47e5-92be-8b39ffad23f6.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-09-08T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,13 +36,13 @@
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
-    </script><title>说明 | 知识库</title><meta name="description" content="概述 通过github的Action可以实现在提交代码的时候，自动将程序部署到指定的服务器上(公网服务器)。 服务器配置 在指定的仓库中，选择Settings=>Secrets=>Actions image.pngimage.png 点击右上的新建就可以创建想要保存的隐私配置信息 image.pngimage.png 这里我保存了一下服务器的地址、账号...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/index.html-CdPfCBME.js"><link rel="modulepreload" href="/kbms/assets/1662964862458-55292112-dc41-4232-96cb-361d761de2f1-_T0vxZKs.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    </script><title>说明 | 知识库</title><meta name="description" content="概述 通过github的Action可以实现在提交代码的时候，自动将程序部署到指定的服务器上(公网服务器)。 服务器配置 在指定的仓库中，选择Settings=&gt;Secrets=&gt;Actions image.pngimage.png 点击右上的新建就可以创建想要保存的隐私配置信息 image.pngimage.png 这里我保存了一下服务器...">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/index.html-B3avnouv.js"><link rel="modulepreload" href="/knowledge/assets/1662964862458-55292112-dc41-4232-96cb-361d761de2f1-DvQ1rLHW.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>

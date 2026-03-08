@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.102" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -22,14 +22,13 @@
     <script>
       const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"EFCore之命令行工具","image":["https://azrng.gitee.io/kbms/kbms/common/1621691682147-40e2c2d3-c8a8-4539-ae1a-119050ddd46c.png","https://azrng.gitee.io/kbms/kbms/common/1621691745639-9f4882dc-2b14-4f6f-86f8-b367bda17085.png","https://azrng.gitee.io/kbms/kbms/common/1621692104322-fcea5b1e-6627-4be8-8454-f9e8d98cf162.png","https://azrng.gitee.io/kbms/kbms/common/1621693379678-d416ee07-bbc4-482c-bc64-fe5e57f349b4.png","https://azrng.gitee.io/kbms/kbms/common/1621693420142-8822ffa1-04d8-417c-b845-06f6147096ad.png","https://azrng.gitee.io/kbms/kbms/common/1621695517264-5809009b-0db9-4f65-8888-78152060689c.png","https://azrng.gitee.io/kbms/kbms/common/1621696179270-cf4c9c05-59be-4a83-9103-95a21aa63e7e.png","https://azrng.gitee.io/kbms/kbms/common/1621693765298-d5a13bd3-2b42-49ba-867e-8f5474433585.png","https://azrng.gitee.io/kbms/kbms/common/1621697557205-ffa777d4-8429-4ca7-9573-a4cb3e68438e.png","https://azrng.gitee.io/kbms/kbms/common/1621697542283-e77da708-4def-4fee-be11-496a3cdc26a8.png","https://azrng.gitee.io/kbms/kbms/common/1621697623587-c3232f61-36a4-452e-84e3-7789a9a50caa.png","https://azrng.gitee.io/kbms/kbms/common/1621698024441-3e8887bb-a239-433a-9b75-231528fca8e0.png","https://azrng.gitee.io/kbms/kbms/common/1621698058297-5a7e56b2-5a58-4bff-90cb-b7e8f1daedc0.png"],"datePublished":"2023-07-03T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/orm/efcore/migration/efCoreCli.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="EFCore之命令行工具"><meta property="og:description" content="介绍 EFCore工具可帮助完成设计数据库时候的开发任务，主要用于通过对数据库架构进行反向工程来管理迁移和搭建DbContext和实体类型。EFCore .NET命令行工具是对跨平台.NET Core CLI工具的扩展，该工具执行需要具有.NET Core SDK(具有 Sdk="Microsoft.NET.Sdk" 的项目或项目文件中的相似项目)的项..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1621691682147-40e2c2d3-c8a8-4539-ae1a-119050ddd46c.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-07-03T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"EFCore之命令行工具","image":["https://azrng.gitee.io/kbms/knowledge/common/1621691682147-40e2c2d3-c8a8-4539-ae1a-119050ddd46c.png","https://azrng.gitee.io/kbms/knowledge/common/1621691745639-9f4882dc-2b14-4f6f-86f8-b367bda17085.png","https://azrng.gitee.io/kbms/knowledge/common/1621692104322-fcea5b1e-6627-4be8-8454-f9e8d98cf162.png","https://azrng.gitee.io/kbms/knowledge/common/1621693379678-d416ee07-bbc4-482c-bc64-fe5e57f349b4.png","https://azrng.gitee.io/kbms/knowledge/common/1621693420142-8822ffa1-04d8-417c-b845-06f6147096ad.png","https://azrng.gitee.io/kbms/knowledge/common/1621695517264-5809009b-0db9-4f65-8888-78152060689c.png","https://azrng.gitee.io/kbms/knowledge/common/1621696179270-cf4c9c05-59be-4a83-9103-95a21aa63e7e.png","https://azrng.gitee.io/kbms/knowledge/common/1621693765298-d5a13bd3-2b42-49ba-867e-8f5474433585.png","https://azrng.gitee.io/kbms/knowledge/common/1621697557205-ffa777d4-8429-4ca7-9573-a4cb3e68438e.png","https://azrng.gitee.io/kbms/knowledge/common/1621697542283-e77da708-4def-4fee-be11-496a3cdc26a8.png","https://azrng.gitee.io/kbms/knowledge/common/1621697623587-c3232f61-36a4-452e-84e3-7789a9a50caa.png","https://azrng.gitee.io/kbms/knowledge/common/1621698024441-3e8887bb-a239-433a-9b75-231528fca8e0.png","https://azrng.gitee.io/kbms/knowledge/common/1621698058297-5a7e56b2-5a58-4bff-90cb-b7e8f1daedc0.png"],"datePublished":"2023-07-03T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/orm/efcore/migration/efCoreCli.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="EFCore之命令行工具"><meta property="og:description" content="介绍 EFCore工具可帮助完成设计数据库时候的开发任务，主要用于通过对数据库架构进行反向工程来管理迁移和搭建DbContext和实体类型。EFCore .NET命令行工具是对跨平台.NET Core CLI工具的扩展，该工具执行需要具有.NET Core SDK(具有 Sdk=&quot;Microsoft.NET.Sdk&quot; 的项目或项目文..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1621691682147-40e2c2d3-c8a8-4539-ae1a-119050ddd46c.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-07-03T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,13 +36,13 @@
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
-    </script><title>EFCore之命令行工具 | 知识库</title><meta name="description" content="介绍 EFCore工具可帮助完成设计数据库时候的开发任务，主要用于通过对数据库架构进行反向工程来管理迁移和搭建DbContext和实体类型。EFCore .NET命令行工具是对跨平台.NET Core CLI工具的扩展，该工具执行需要具有.NET Core SDK(具有 Sdk="Microsoft.NET.Sdk" 的项目或项目文件中的相似项目)的项...">
-    <link rel="preload" href="/kbms/assets/style-D_aTibSR.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-D_aTibSR.css">
-    <link rel="modulepreload" href="/kbms/assets/app-BhL8pLc0.js"><link rel="modulepreload" href="/kbms/assets/efCoreCli.html-DlfNRdXY.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    </script><title>EFCore之命令行工具 | 知识库</title><meta name="description" content="介绍 EFCore工具可帮助完成设计数据库时候的开发任务，主要用于通过对数据库架构进行反向工程来管理迁移和搭建DbContext和实体类型。EFCore .NET命令行工具是对跨平台.NET Core CLI工具的扩展，该工具执行需要具有.NET Core SDK(具有 Sdk=&quot;Microsoft.NET.Sdk&quot; 的项目或项目文...">
+    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
+    <link rel="modulepreload" href="/knowledge/assets/app-og7VwcY5.js"><link rel="modulepreload" href="/knowledge/assets/efCoreCli.html-Cl5QlA9P.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/kbms/assets/app-BhL8pLc0.js" defer></script>
+    <script type="module" src="/knowledge/assets/app-og7VwcY5.js" defer></script>
   </body>
 </html>
