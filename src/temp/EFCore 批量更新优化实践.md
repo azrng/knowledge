@@ -1,198 +1,213 @@
-# EF Core ExecuteUpdateAsync 签名演变与扩展优化实践
+# EFCore 批量更新优化实践：从 SaveChanges 到 ExecuteUpdate 的演进之路
 
-> .NET 7 到 .NET 10，批量更新的 API 发生了什么变化？如何编写适配两个版本的扩展方法？本文带你深入理解 EF Core 批量更新的签名演变与扩展优化之道。
+> 在 .NET 10 环境下，EF Core 的批量操作迎来了全新的 API 时代。本文将带你深入了解批量更新、删除、插入的优化实践，感受从传统模式到现代高效模式的演进。
 
 ---
 
-## 一、ExecuteUpdateAsync 的两种签名
+## 一、测试环境
 
-### 1.1 .NET 7 - .NET 9：表达式树签名
+| 项目 | 版本/说明 |
+|------|----------|
+| .NET SDK | .NET 10.0 |
+| EF Core | 10.0+ |
+| 数据库 |  PostgreSQL |
+| 开发工具 | Visual Studio 2026 |
+
+---
+
+## 二、为什么做这个文章？之前的修改和删除是如何实现的
+
+### 2.1 传统模式的痛点
+
+在 EF Core 7 之前（以及传统的 EF 6 时代），批量更新和删除操作一直是一个性能痛点。让我们看看**之前的实现方式**：
+
+#### 方式一：查询 + 循环修改 + SaveChanges
 
 ```csharp
-// .NET 7 - .NET 9 的 API 签名
-public static Task<int> ExecuteUpdateAsync<TSource>(
-    this IQueryable<TSource> source,
-    Expression<Func<SetPropertyCalls<TSource>, SetPropertyCalls<TSource>>> setPropertyCalls,
-    CancellationToken cancellationToken = default)
-    where TSource : class
+// ❌ 批量更新：先查询，再循环修改，最后保存
+var users = _context.Users.Where(x => x.Status == UserStatus.Inactive).ToList();
+
+foreach (var user in users)
+{
+    user.Status = UserStatus.Deleted;
+    user.DeletedAt = DateTime.Now;
+}
+
+await _context.SaveChangesAsync();
 ```
 
-**使用方式：**
+**问题分析：**
 
-```csharp
-await _context.Users
-    .Where(x => x.Id == userId)
-    .ExecuteUpdateAsync(x => x
-        .SetProperty(u => u.Email, "new@email.com")
-        .SetProperty(u => u.Phone, "123456789")
-    );
-```
-
-**签名特点：**
-
-| 特点 | 说明 |
+| 问题 | 说明 |
 |------|------|
-| 参数类型 | `Expression<Func<SetPropertyCalls<T>, SetPropertyCalls<T>>>` |
-| 返回值 | `SetPropertyCalls<T>` 用于链式调用 |
-| 优势 | 完整的表达式树，可被 EF Core 翻译为 SQL |
-| 劣势 | 签名冗长，理解成本高 |
+| 内存消耗 | 所有数据加载到内存，大数据量时可能 OOM |
+| 性能低下 | 每条记录生成一条 UPDATE 语句 |
+| 跟踪开销 | EF Core 需要跟踪所有实体的状态变化 |
+| 并发风险 | 查询和更新之间数据可能被修改 |
+
+#### 方式二：使用原生 SQL
+
+```csharp
+// ⚠️ 使用原生 SQL，失去类型安全
+await _context.Database.ExecuteSqlRawAsync(
+    "UPDATE Users SET Status = {0}, DeletedAt = {1} WHERE Status = {2}",
+    UserStatus.Deleted, DateTime.Now, UserStatus.Inactive
+);
+```
+
+**问题分析：**
+
+| 问题 | 说明 |
+|------|------|
+| 类型不安全 | 参数拼写错误编译时无法发现 |
+| 数据库绑定 | 失去 EF Core 的数据库抽象能力 |
+| 维护成本高 | SQL 字符串散落在代码中，难以重构 |
+
+#### 方式三：第三方库（如 EF Core.BulkExtensions）
+
+```csharp
+// ⚠️ 依赖第三方库，需要额外学习和集成成本
+await _context.BulkUpdateAsync(users);
+```
+
+**问题分析：**
+
+| 问题 | 说明 |
+|------|------|
+| 额外依赖 | 增加项目复杂度和维护成本 |
+| 功能限制 | 免费版通常有限制 |
+| 兼容性风险 | 需要跟随 EF Core 版本升级 |
+
+### 2.2 删除操作的传统实现
+
+```csharp
+// ❌ 传统删除：先查询再删除
+var users = _context.Users.Where(x => x.Status == UserStatus.Deleted).ToList();
+_context.Users.RemoveRange(users);
+await _context.SaveChangesAsync();
+```
+
+同样的问题：**内存占用高、性能差、跟踪开销大**。
 
 ---
 
-### 1.2 .NET 10+：Action 委托签名
+## 三、现在的修改和删除是怎样的
+
+### 3.1 EF Core 7+ 引入的 ExecuteUpdate
+
+从 EF Core 7 开始，微软官方引入了 `ExecuteUpdateAsync` API，在 .NET 10 中进一步优化。
+
+#### 基本用法
 
 ```csharp
-// .NET 10+ 的 API 签名
-public static Task<int> ExecuteUpdateAsync<TSource>(
-    this IQueryable<TSource> source,
-    Action<UpdateSettersBuilder<TSource>> setPropertyCalls,
-    CancellationToken cancellationToken = default)
-    where TSource : class
-```
-
-**使用方式：**
-
-```csharp
+// ✅ .NET 10 批量更新：一条 SQL 直接执行
 await _context.Users
-    .Where(x => x.Id == userId)
+    .Where(x => x.Status == UserStatus.Inactive)
     .ExecuteUpdateAsync(x => x
-        .SetProperty(u => u.Email, "new@email.com")
-        .SetProperty(u => u.Phone, "123456789")
+        .SetProperty(u => u.Status, UserStatus.Deleted)
+        .SetProperty(u => u.DeletedAt, DateTime.Now)
     );
 ```
 
-**签名变化：**
+**生成的 SQL：**
 
-| 变化点 | .NET 7-9 | .NET 10+ |
-|--------|----------|----------|
-| 参数类型 | `Expression<Func<...>>` | `Action<UpdateSettersBuilder<T>>` |
-| 构建器类型 | `SetPropertyCalls<T>` | `UpdateSettersBuilder<T>` |
-| 签名长度 | 冗长 | 简洁 |
-| 表达式树 | 完整保留 | 运行时构建 |
-
----
-
-### 1.3 签名对比分析
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                     .NET 7-9 签名                               │
-│                                                                 │
-│  Expression<Func<SetPropertyCalls<T>, SetPropertyCalls<T>>>    │
-│  │                        │                      │             │
-│  │                        │                      └─ 返回值     │
-│  │                        └─ 参数               │             │
-│  └─ 表达式树包装                                  └─ 链式调用  │
-│                                                                 │
-│  优点：EF Core 可以直接分析表达式树结构                           │
-│  缺点：类型签名复杂，泛型嵌套深                                  │
-└─────────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────────┐
-│                     .NET 10+ 签名                               │
-│                                                                 │
-│  Action<UpdateSettersBuilder<T>>                                │
-│  │              │                                               │
-│  │              └─ 构建器类型（简化）                            │
-│  └─ 普通委托                                                    │
-│                                                                 │
-│  优点：签名简洁，开发友好                                        │
-│  缺点：失去部分表达式树分析能力（但 EF Core 内部处理了）          │
-└─────────────────────────────────────────────────────────────────┘
+```sql
+UPDATE [Users]
+SET [Status] = @p0, [DeletedAt] = @p1
+WHERE [Status] = @p2
 ```
 
----
+#### 关键特性
 
-## 二、为什么签名会变化？
+| 特性 | 说明 |
+|------|------|
+| 单条 SQL | 无论多少数据，只执行一条 UPDATE |
+| 不跟踪 | 不加载实体到内存，无状态跟踪开销 |
+| 类型安全 | 使用 Lambda 表达式，编译时检查 |
+| 数据库无关 | 仍然使用 EF Core，支持多种数据库 |
 
-### 2.1 官方动机
-
-根据 EF Core 团队的说明，签名变化的原因包括：
-
-1. **简化 API 设计**：`Expression<Func<...>>` 嵌套过深，开发者理解成本高
-2. **运行时构建更灵活**：`Action<Builder>` 模式更符合.NET 惯用法
-3. **性能优化**：减少表达式树编译开销
-
-### 2.2 实际影响
-
-对于普通开发者，**使用方式几乎没有变化**：
+### 3.2 ExecuteDeleteAsync 批量删除
 
 ```csharp
-// 两种签名下，这段代码都能工作
+// ✅ .NET 10 批量删除：一条 SQL 直接执行
 await _context.Users
-    .Where(x => x.Id == userId)
-    .ExecuteUpdateAsync(x => x
-        .SetProperty(u => u.Email, "new@email.com")
-    );
+    .Where(x => x.Status == UserStatus.Deleted && x.DeletedAt < DateTime.Now.AddDays(-30))
+    .ExecuteDeleteAsync();
 ```
 
-但对于**扩展方法开发者**，需要做版本兼容处理。
+**生成的 SQL：**
+
+```sql
+DELETE FROM [Users]
+WHERE [Status] = @p0 AND [DeletedAt] < @p1
+```
+
+### 3.3 签名变化：从 Expression 到 Action
+
+在 .NET 10 中，API 签名进一步简化：
+
+```csharp
+// .NET 7-9 的签名
+Expression<Func<SetPropertyCalls<T>, SetPropertyCalls<T>>>
+
+// .NET 10+ 的签名（更简洁）
+Action<UpdateSettersBuilder<T>>
+```
+
+**使用体验无差异，但内部实现更优化**。
 
 ---
 
-## 三、BaseRepository 的版本兼容实现
+## 四、有什么优点
 
-### 3.1 条件编译方案
+### 4.1 性能对比
+
+| 场景 | 传统方式 | ExecuteUpdate | 提升 |
+|------|----------|---------------|------|
+| 更新 1000 条记录 | 1000+ 条 SQL | 1 条 SQL | **1000x** |
+| 更新 10000 条记录 | 10000+ 条 SQL | 1 条 SQL | **10000x** |
+| 内存占用 | O(n) | O(1) | **显著降低** |
+
+### 4.2 代码简洁度对比
 
 ```csharp
-#if NET7_0_OR_GREATER && (!NET10_0_OR_GREATER)
-/// <summary>
-/// .NET 7-9：使用 Expression 签名
-/// </summary>
-public async Task<int> UpdateAsync(
-    Expression<Func<TEntity, bool>> predict,
-    Expression<Func<SetPropertyCalls<TEntity>, SetPropertyCalls<TEntity>>> setPropertyCalls)
+// ❌ 之前：10+ 行代码
+var entities = await _context.Entities
+    .Where(x => x.Type == type)
+    .ToListAsync();
+
+foreach (var entity in entities)
 {
-    return await _dbContext.Set<TEntity>()
-        .Where(predict)
-        .ExecuteUpdateAsync(setPropertyCalls)
-        .ConfigureAwait(false);
+    entity.Status = newStatus;
 }
 
-#elif NET10_0_OR_GREATER
-/// <summary>
-/// .NET 10+：使用 Action 签名
-/// </summary>
-public async Task<int> UpdateAsync(
-    Expression<Func<TEntity, bool>> predict,
-    Action<UpdateSettersBuilder<TEntity>> setPropertyCalls)
-{
-    return await _dbContext.Set<TEntity>()
-        .Where(predict)
-        .ExecuteUpdateAsync(setPropertyCalls)
-        .ConfigureAwait(false);
-}
-#endif
-```
+await _context.SaveChangesAsync();
 
-### 3.2 关键差异点
-
-| 差异点 | .NET 7-9 | .NET 10+ |
-|--------|----------|----------|
-| 第二个参数类型 | `Expression<Func<SetPropertyCalls<T>, SetPropertyCalls<T>>>` | `Action<UpdateSettersBuilder<T>>` |
-| 构建器类型 | `SetPropertyCalls<T>` | `UpdateSettersBuilder<T>` |
-| 返回类型 | 两者相同，都是`UpdateSettersBuilder<T>`（链式调用） |
-
----
-
-## 四、扩展方法优化：条件批量更新
-
-### 4.1 问题场景
-
-标准的 `ExecuteUpdateAsync` 无法实现"值不为 null 时才更新"：
-
-```csharp
-// 问题：即使 dto.Email 为 null，也会执行更新，将数据库字段设为 NULL
-await _context.Users
-    .Where(x => x.Id == userId)
+// ✅ 现在：3 行代码
+await _context.Entities
+    .Where(x => x.Type == type)
     .ExecuteUpdateAsync(x => x
-        .SetProperty(u => u.Email, dto.Email)  // null 也会更新
+        .SetProperty(e => e.Status, newStatus)
     );
 ```
 
-### 4.2 优化思路
+### 4.3 高级用法：条件更新
 
-在调用 `SetProperty` 之前进行条件判断，只有满足条件时才调用：
+结合扩展方法，可以实现**字段级别的按需更新**：
+
+```csharp
+// PATCH 场景：只更新非空字段
+await _context.Users
+    .Where(x => x.Id == userId)
+    .ExecuteUpdateAsync(x => x
+        .SetPropertyIfNotNull(u => u.Email, dto.Email)
+        .SetPropertyIfNotNull(u => u.Phone, dto.Phone)
+        .SetPropertyIfNotNullOrWhiteSpace(u => u.NickName, dto.NickName)
+        .SetPropertyIfHasValue(u => u.Age, dto.Age)
+    );
+```
+
+**扩展方法实现核心（.NET 10+）：**
 
 ```csharp
 public static UpdateSettersBuilder<TSource> SetPropertyIfNotNull<TSource, TProperty>(
@@ -202,356 +217,67 @@ public static UpdateSettersBuilder<TSource> SetPropertyIfNotNull<TSource, TPrope
     where TProperty : class
 {
     if (value is null)
-        return builder; // 不调用 SetProperty，直接返回
+        return builder; // 不调用 SetProperty
 
-    builder.SetProperty(propertyExpression,
-        Expression.Constant(value, typeof(TProperty)));
+    builder.SetProperty(propertyExpression, value);
     return builder;
 }
 ```
 
+### 4.4 完整对比表
+
+| 特性 | 传统 SaveChanges | ExecuteUpdate/Delete |
+|------|------------------|---------------------|
+| SQL 数量 | N+1 条 | 1 条 |
+| 内存占用 | 高（加载全部实体） | 低（不加载） |
+| 实体跟踪 | 需要 | 不需要 |
+| 并发安全 | 较低 | 较高 |
+| 类型安全 | 是 | 是 |
+| 数据库无关 | 是 | 是 |
+| 适用场景 | 复杂业务逻辑 | 简单批量操作 |
+
 ---
 
-## 五、完整扩展方法实现（.NET 10+）
+## 五、最佳实践建议
 
-### 5.1 核心扩展方法
+### 5.1 何时使用 ExecuteUpdate
+
+| ✅ 推荐使用 | ⚠️ 谨慎使用 |
+|------------|------------|
+| 批量状态更新 | 需要触发域事件的场景 |
+| 条件批量修改 | 需要验证业务规则的场景 |
+| 软删除标记 | 需要级联更新的复杂场景 |
+| 统计字段更新 | 需要乐观并发检查的场景 |
+
+### 5.2 何时仍需使用 SaveChanges
 
 ```csharp
-#if NET10_0_OR_GREATER
-public static class ConditionalUpdateExtensions
+// ✅ 复杂业务逻辑，仍需使用传统方式
+foreach (var order in orders)
 {
-    /// <summary>
-    /// 当条件为 true 时，才更新指定属性
-    /// </summary>
-    public static UpdateSettersBuilder<TSource> SetPropertyIfTrue<TSource, TProperty>(
-        this UpdateSettersBuilder<TSource> builder,
-        bool condition,
-        Expression<Func<TSource, TProperty>> propertyExpression,
-        TProperty value)
-    {
-        if (!condition)
-            return builder;
+    // 需要调用领域方法
+    order.Approve();
 
-        builder.SetProperty(propertyExpression,
-            Expression.Constant(value, typeof(TProperty)));
-        return builder;
-    }
+    // 需要发送领域事件
+    _domainEvents.Add(new OrderApprovedEvent(order));
 
-    /// <summary>
-    /// 当字符串不为 null 或空白时，才更新指定属性
-    /// </summary>
-    public static UpdateSettersBuilder<TSource> SetPropertyIfNotNullOrWhiteSpace<TSource>(
-        this UpdateSettersBuilder<TSource> builder,
-        Expression<Func<TSource, string>> propertyExpression,
-        string value)
-    {
-        if (string.IsNullOrWhiteSpace(value))
-            return builder;
-
-        builder.SetProperty(propertyExpression,
-            Expression.Constant(value, typeof(string)));
-        return builder;
-    }
-
-    /// <summary>
-    /// 当值不为 null 时，才更新指定属性（引用类型）
-    /// </summary>
-    public static UpdateSettersBuilder<TSource> SetPropertyIfNotNull<TSource, TProperty>(
-        this UpdateSettersBuilder<TSource> builder,
-        Expression<Func<TSource, TProperty>> propertyExpression,
-        TProperty value)
-        where TProperty : class
-    {
-        if (value is null)
-            return builder;
-
-        builder.SetProperty(propertyExpression,
-            Expression.Constant(value, typeof(TProperty)));
-        return builder;
-    }
-
-    /// <summary>
-    /// 当值有值时，才更新指定属性（可空值类型）
-    /// </summary>
-    public static UpdateSettersBuilder<TSource> SetPropertyIfHasValue<TSource, TProperty>(
-        this UpdateSettersBuilder<TSource> builder,
-        Expression<Func<TSource, TProperty>> propertyExpression,
-        TProperty? value)
-        where TProperty : struct
-    {
-        if (!value.HasValue)
-            return builder;
-
-        builder.SetProperty(propertyExpression,
-            Expression.Constant(value.Value, typeof(TProperty)));
-        return builder;
-    }
-
-    /// <summary>
-    /// 当自定义条件满足时，才更新指定属性
-    /// </summary>
-    public static UpdateSettersBuilder<TSource> SetPropertyIf<TSource, TProperty>(
-        this UpdateSettersBuilder<TSource> builder,
-        Func<TProperty, bool> condition,
-        Expression<Func<TSource, TProperty>> propertyExpression,
-        TProperty value)
-    {
-        if (!condition(value))
-            return builder;
-
-        builder.SetProperty(propertyExpression,
-            Expression.Constant(value, typeof(TProperty)));
-        return builder;
-    }
+    // 需要验证业务规则
+    if (!order.CanShip())
+        throw new BusinessException("不能发货");
 }
-#endif
-```
 
-### 5.2 .NET 7-9 的扩展方法适配
-
-由于 .NET 7-9 使用 `SetPropertyCalls<T>` 而非 `UpdateSettersBuilder<T>`，需要单独实现：
-
-```csharp
-#if NET7_0_OR_GREATER && (!NET10_0_OR_GREATER)
-public static class ConditionalUpdateExtensions
-{
-    public static SetPropertyCalls<TSource> SetPropertyIfNotNull<TSource, TProperty>(
-        this SetPropertyCalls<TSource> builder,
-        Expression<Func<TSource, TProperty>> propertyExpression,
-        TProperty value)
-        where TProperty : class
-    {
-        if (value is null)
-            return builder;
-
-        builder.SetProperty(propertyExpression,
-            Expression.Constant(value, typeof(TProperty)));
-        return builder;
-    }
-
-    public static SetPropertyCalls<TSource> SetPropertyIfNotNullOrWhiteSpace<TSource>(
-        this SetPropertyCalls<TSource> builder,
-        Expression<Func<TSource, string>> propertyExpression,
-        string value)
-    {
-        if (string.IsNullOrWhiteSpace(value))
-            return builder;
-
-        builder.SetProperty(propertyExpression,
-            Expression.Constant(value, typeof(string)));
-        return builder;
-    }
-
-    public static SetPropertyCalls<TSource> SetPropertyIfTrue<TSource, TProperty>(
-        this SetPropertyCalls<TSource> builder,
-        bool condition,
-        Expression<Func<TSource, TProperty>> propertyExpression,
-        TProperty value)
-    {
-        if (!condition)
-            return builder;
-
-        builder.SetProperty(propertyExpression,
-            Expression.Constant(value, typeof(TProperty)));
-        return builder;
-    }
-}
-#endif
+await _context.SaveChangesAsync();
 ```
 
 ---
 
-## 六、使用示例对比
+## 六、结语
 
-### 6.1 原始用法 vs 扩展方法
+EF Core 的 `ExecuteUpdate`、`ExecuteDelete` 系列 API，标志着 EF Core 在批量操作领域迈出了重要一步。
 
-```csharp
-// ─────────────────────────────────────────────────────────────
-// 原始用法：无法实现条件更新
-// ─────────────────────────────────────────────────────────────
-await _context.Users
-    .Where(x => x.Id == userId)
-    .ExecuteUpdateAsync(x => x
-        .SetProperty(u => u.Email, dto.Email)  // 即使 null 也会更新
-        .SetProperty(u => u.Phone, dto.Phone)
-    );
+**核心收获：**
 
-// ─────────────────────────────────────────────────────────────
-// 扩展方法：优雅的条件更新
-// ─────────────────────────────────────────────────────────────
-await _context.Users
-    .Where(x => x.Id == userId)
-    .ExecuteUpdateAsync(x => x
-        .SetPropertyIfNotNull(u => u.Email, dto.Email)
-        .SetPropertyIfNotNull(u => u.Phone, dto.Phone)
-        .SetPropertyIfNotNullOrWhiteSpace(u => u.NickName, dto.NickName)
-    );
-```
-
-### 6.2 综合场景示例
-
-```csharp
-public class UserService
-{
-    private readonly DbContext _context;
-
-    // 场景 1：PATCH 部分更新
-    public async Task PatchAsync(long userId, UserPatchDto dto)
-    {
-        await _context.Users
-            .Where(x => x.Id == userId)
-            .ExecuteUpdateAsync(x => x
-                .SetPropertyIfNotNull(u => u.Email, dto.Email)
-                .SetPropertyIfNotNull(u => u.Phone, dto.Phone)
-                .SetPropertyIfNotNullOrWhiteSpace(u => u.NickName, dto.NickName)
-                .SetPropertyIfHasValue(u => u.Age, dto.Age)
-            );
-    }
-
-    // 场景 2：条件更新
-    public async Task UpdateRoleAsync(long userId, bool isAdmin)
-    {
-        await _context.Users
-            .Where(x => x.Id == userId)
-            .ExecuteUpdateAsync(x => x
-                .SetPropertyIfTrue(isAdmin, u => u.Role, "Administrator")
-                .SetPropertyIfTrue(!isAdmin, u => u.Role, "User")
-            );
-    }
-
-    // 场景 3：自定义条件
-    public async Task UpdateScoreAsync(long userId, int score)
-    {
-        await _context.Users
-            .Where(x => x.Id == userId)
-            .ExecuteUpdateAsync(x => x
-                .SetPropertyIf(
-                    s => s > 0,           // 条件：分数大于 0
-                    u => u.Score,         // 属性
-                    score                 // 值
-                )
-            );
-    }
-}
-```
-
----
-
-## 七、扩展方法的设计原理
-
-### 7.1 核心思想：守卫模式 + 链式调用
-
-```csharp
-public static UpdateSettersBuilder<TSource> SetPropertyIfNotNull<...>(...)
-{
-    // 守卫模式：条件不满足时提前返回
-    if (value is null)
-        return builder;
-
-    // 执行更新
-    builder.SetProperty(propertyExpression,
-        Expression.Constant(value, typeof(TProperty)));
-
-    // 返回 builder，支持链式调用
-    return builder;
-}
-```
-
-### 7.2 为什么能链式调用？
-
-```
-UpdateSettersBuilder<T>
-    │
-    ├─ SetPropertyIfNotNull(...)  → 返回 UpdateSettersBuilder<T>
-    │      └─ 内部调用 builder.SetProperty(...)
-    │      └─ 返回 builder（同一个实例）
-    │
-    └─ 链式调用继续...
-```
-
-### 7.3 表达式树的作用
-
-```csharp
-Expression<Func<TSource, TProperty>> propertyExpression
-// 例如：u => u.Email
-
-Expression.Constant(value, typeof(TProperty))
-// 将值包装为表达式树节点
-```
-
-EF Core 会将这两个表达式组合，最终生成类似这样的 SQL：
-
-```sql
-UPDATE Users SET Email = @p0 WHERE Id = @p1
-```
-
----
-
-## 八、版本兼容性总结
-
-| 特性 | .NET 7-9 | .NET 10+ |
-|------|----------|----------|
-| 核心 API | `ExecuteUpdateAsync` | `ExecuteUpdateAsync` |
-| 参数签名 | `Expression<Func<SetPropertyCalls<T>,...>>` | `Action<UpdateSettersBuilder<T>>` |
-| 构建器类型 | `SetPropertyCalls<T>` | `UpdateSettersBuilder<T>` |
-| 扩展方法 | 需针对 `SetPropertyCalls<T>`扩展 | 需针对 `UpdateSettersBuilder<T>` 扩展 |
-| 条件编译 | `#if NET7_0_OR_GREATER && (!NET10_0_OR_GREATER)` | `#if NET10_0_OR_GREATER` |
-
----
-
-## 九、最佳实践建议
-
-### 9.1 优先使用原生 SetProperty
-
-```csharp
-// ✅ 推荐：简单场景直接用 SetProperty
-await _context.Users
-    .Where(x => x.Id == userId)
-    .ExecuteUpdateAsync(x => x
-        .SetProperty(u => u.Status, UserStatus.Active)
-    );
-```
-
-### 9.2 条件更新使用扩展方法
-
-```csharp
-// ✅ 推荐：PATCH 场景使用条件扩展
-await _context.Users
-    .Where(x => x.Id == userId)
-    .ExecuteUpdateAsync(x => x
-        .SetPropertyIfNotNull(u => u.Email, dto.Email)
-    );
-```
-
-### 9.3 仓库层做好版本兼容
-
-```csharp
-// ✅ 推荐：Repository 中用条件编译处理版本差异
-#if NET7_0_OR_GREATER && (!NET10_0_OR_GREATER)
-public Task<int> UpdateAsync(..., Expression<Func<SetPropertyCalls<...>, ...>> ...)
-#elif NET10_0_OR_GREATER
-public Task<int> UpdateAsync(..., Action<UpdateSettersBuilder<...>> ...)
-#endif
-```
-
----
-
-## 十、结语
-
-从 .NET 7 到 .NET 10，`ExecuteUpdateAsync` 的签名从 `Expression<Func<...>>` 简化为 `Action<Builder>`，体现了 EF Core 团队对开发者体验的重视。
-
-**作为库开发者，我们需要：**
-
-1. 理解两种签名的差异
-2. 使用条件编译做好版本兼容
-3. 针对不同的构建器类型实现扩展方法
-
-**作为应用开发者，我们可以：**
-
-1. 直接使用 `ExecuteUpdateAsync` 进行批量更新
-2. 利用扩展方法实现条件更新
-3. 享受签名简化带来的便利
-
----
-
-*本文涉及的完整代码已开源，欢迎交流讨论！*
+1. **性能提升**：从 N+1 条 SQL 到 1 条 SQL，性能提升数量级
+2. **内存优化**：不再加载实体到内存，O(1) 内存复杂度
+3. **开发体验**：类型安全的 Lambda 表达式，告别字符串 SQL
+4. **渐进式采用**：可以与传统 SaveChanges 共存，按需选择
