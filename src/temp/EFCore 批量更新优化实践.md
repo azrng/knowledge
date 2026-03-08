@@ -17,7 +17,33 @@
 
 ## 二、为什么做这个文章？之前的修改和删除是如何实现的
 
-### 2.1 传统模式的痛点
+### 2.1 编写本文的初衷
+
+**在实际工作中，我们遇到了这样的场景：**
+
+在使用 EF Core 进行批量更新时，经常需要处理 **PATCH 部分更新** 的需求。例如需要批量刷一些数据，期待当值为null的时候不更新。如果使用标准的 `SetProperty`，**即使值为 null 也会执行更新**，导致数据库中的有效数据被覆盖为 NULL：
+
+```csharp
+// ❌ 问题：即使 dto.Email 为 null，也会将数据库字段设为 NULL
+await _context.Users
+    .Where(x => x.Id == userId)
+    .ExecuteUpdateAsync(x => x
+        .SetProperty(u => u.Email, dto.Email)  // null 也会更新！
+        .SetProperty(u => u.Phone, dto.Phone)  // null 也会更新！
+    );
+```
+
+**这正是我们编写这篇文章的初衷：**
+
+1. **工作中实际用到了批量更新** - 需要高性能的批量操作方案
+2. **需要处理字段为 null 时不更新的场景** - PATCH 部分更新的常见需求
+3. **官方 API 无法直接满足条件更新** - 需要通过扩展方法实现
+
+通过本文，我们希望分享如何在使用 EF Core `ExecuteUpdate` 进行高效批量更新的同时，优雅地处理"字段为 null 不更新"这类常见业务场景。
+
+---
+
+### 2.2 传统模式的痛点
 
 在 EF Core 7 之前（以及传统的 EF 6 时代），批量更新和删除操作一直是一个性能痛点。让我们看看**之前的实现方式**：
 
@@ -191,37 +217,140 @@ await _context.Entities
     );
 ```
 
-### 4.3 高级用法：条件更新
+### 4.3 高级用法：条件更新扩展方法
 
-结合扩展方法，可以实现**字段级别的按需更新**：
+结合扩展方法，可以实现**字段级别的按需更新**，这是实际业务中最常用的场景。
+
+#### 扩展方法完整实现
 
 ```csharp
-// PATCH 场景：只更新非空字段
-await _context.Users
-    .Where(x => x.Id == userId)
-    .ExecuteUpdateAsync(x => x
-        .SetPropertyIfNotNull(u => u.Email, dto.Email)
-        .SetPropertyIfNotNull(u => u.Phone, dto.Phone)
-        .SetPropertyIfNotNullOrWhiteSpace(u => u.NickName, dto.NickName)
-        .SetPropertyIfHasValue(u => u.Age, dto.Age)
-    );
+/// <summary>
+/// 条件更新扩展方法
+/// </summary>
+public static class ConditionalUpdateExtensions
+{
+    /// <summary>
+    /// 当条件为 true 时，指定一个属性及在 ExecuteUpdate 方法中应更新为的对应值
+    /// </summary>
+    public static UpdateSettersBuilder<TSource> SetPropertyIfTrue<TSource, TProperty>(
+        this UpdateSettersBuilder<TSource> updateSettersBuilder,
+        bool condition,
+        Expression<Func<TSource, TProperty>> propertyExpression,
+        TProperty valueExpression)
+    {
+        if (!condition)
+            return updateSettersBuilder;
+
+        updateSettersBuilder.SetProperty(propertyExpression, Expression.Constant(valueExpression, typeof(TProperty)));
+        return updateSettersBuilder;
+    }
+
+    /// <summary>
+    /// 当值不为 null 或空白时，指定一个属性及在 ExecuteUpdate 方法中应更新为的对应值
+    /// </summary>
+    public static UpdateSettersBuilder<TSource> SetPropertyIfNotNullOrWhiteSpace<TSource>(
+        this UpdateSettersBuilder<TSource> updateSettersBuilder,
+        Expression<Func<TSource, string>> propertyExpression,
+        string valueExpression)
+    {
+        if (valueExpression.IsNullOrWhiteSpace())
+            return updateSettersBuilder;
+
+        updateSettersBuilder.SetProperty(propertyExpression, Expression.Constant(valueExpression, typeof(string)));
+        return updateSettersBuilder;
+    }
+
+    /// <summary>
+    /// 当值不为 null 时，指定一个属性及在 ExecuteUpdate 方法中应更新为的对应值
+    /// </summary>
+    public static UpdateSettersBuilder<TSource> SetPropertyIfNotNull<TSource, TProperty>(
+        this UpdateSettersBuilder<TSource> updateSettersBuilder,
+        Expression<Func<TSource, TProperty>> propertyExpression,
+        TProperty valueExpression)
+        where TProperty : class
+    {
+        if (valueExpression is null)
+            return updateSettersBuilder;
+
+        updateSettersBuilder.SetProperty(propertyExpression, Expression.Constant(valueExpression, typeof(TProperty)));
+        return updateSettersBuilder;
+    }
+
+    /// <summary>
+    /// 当满足自定义条件时，指定一个属性及在 ExecuteUpdate 方法中应更新为的对应值
+    /// </summary>
+    public static UpdateSettersBuilder<TSource> SetPropertyIf<TSource, TProperty>(
+        this UpdateSettersBuilder<TSource> updateSettersBuilder,
+        Func<TProperty, bool> condition,
+        Expression<Func<TSource, TProperty>> propertyExpression,
+        TProperty valueExpression)
+    {
+        if (!condition(valueExpression))
+            return updateSettersBuilder;
+
+        updateSettersBuilder.SetProperty(propertyExpression, Expression.Constant(valueExpression, typeof(TProperty)));
+        return updateSettersBuilder;
+    }
+}
 ```
 
-**扩展方法实现核心（.NET 10+）：**
+#### 使用示例
+
+**示例 1：当值不为 null 时才更新**
 
 ```csharp
-public static UpdateSettersBuilder<TSource> SetPropertyIfNotNull<TSource, TProperty>(
-    this UpdateSettersBuilder<TSource> builder,
-    Expression<Func<TSource, TProperty>> propertyExpression,
-    TProperty value)
-    where TProperty : class
-{
-    if (value is null)
-        return builder; // 不调用 SetProperty
+string? email = GetUserEmailInput();
+string? phone = GetUserPhoneInput();
 
-    builder.SetProperty(propertyExpression, value);
-    return builder;
-}
+await repository.UpdateAsync(
+    x => x.Id == userId,
+    x => x.SetPropertyIfNotNull(u => u.Email, email)
+         .SetPropertyIfNotNull(u => u.Phone, phone)
+);
+```
+
+**示例 2：当字符串不为空白时才更新**
+
+```csharp
+string? userName = GetUserNameInput();
+
+await repository.UpdateAsync(
+    x => x.Id == userId,
+    x => x.SetPropertyIfNotNullOrWhiteSpace(u => u.UserName, userName)
+         .SetProperty(u => u.UpdateTime, DateTime.Now) // 无条件更新
+);
+```
+
+**示例 3：根据布尔条件决定是否更新**
+
+```csharp
+bool shouldActivate = CheckActivationCondition();
+await repository.UpdateAsync(
+    x => x.Id == userId,
+    x => x.SetPropertyIfTrue(shouldActivate, u => u.IsActive, true)
+         .SetPropertyIfTrue(shouldActivate, u => u.ActivationDate, DateTime.Today)
+);
+```
+
+**示例 4：使用自定义条件**
+
+```csharp
+int newScore = GetScore();
+await repository.UpdateAsync(
+    x => x.Id == userId,
+    x => x.SetPropertyIf(score => score > 0, u => u.Score, newScore)
+);
+```
+
+**示例 5：混合使用普通 SetProperty 和条件更新**
+
+```csharp
+await repository.UpdateAsync(
+    x => x.IsActive == false,
+    x => x.SetProperty(u => u.UpdateTime, DateTime.Now) // 无条件更新
+         .SetPropertyIfNotNull(u => u.LastLoginIp, userIp) // 条件更新
+         .SetPropertyIfNotNullOrWhiteSpace(u => u.Comment, comment) // 条件更新
+);
 ```
 
 ### 4.4 完整对比表
@@ -235,6 +364,7 @@ public static UpdateSettersBuilder<TSource> SetPropertyIfNotNull<TSource, TPrope
 | 类型安全 | 是 | 是 |
 | 数据库无关 | 是 | 是 |
 | 适用场景 | 复杂业务逻辑 | 简单批量操作 |
+| 条件更新 | 天然支持 | 需要扩展方法 |
 
 ---
 
