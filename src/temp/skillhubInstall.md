@@ -1,10 +1,13 @@
-# 候选标题（请在公众号后台选择一个最吸引你的）
-
-**从报错到成功运行：解决 SkillHub 安装过程中“找不到 Python”与“python3”依赖问题**
-
 ---
-
-# 正文内容
+title: 从报错到成功运行：解决 SkillHub 安装过程中“找不到 Python”与“python3”依赖问题**
+lang: zh-CN
+date: 2026-03-21
+publish: true
+author: azrng
+isOriginal: true
+tag:
+  - 文章
+---
 
 ## 📖 导读
 

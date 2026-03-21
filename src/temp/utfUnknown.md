@@ -1,14 +1,13 @@
 ---
-
-# 建议标题（任选其一）
-
-1.  **C# 读取文件乱码？别再盲目 Try-Catch 了！**
-2.  **彻底告别中文乱码：推荐一个强大的 .NET 编码检测库**
-3.  **为什么 Encoding.UTF8.GetString 不会报错？聊聊文件编码检测的坑**
-
+title: **彻底告别中文乱码：推荐一个强大的 .NET 编码检测库**
+lang: zh-CN
+date: 2026-03-20
+publish: true
+author: azrng
+isOriginal: true
+tag:
+  - 文章
 ---
-
-# 正文内容
 
 ## 👋 导读
 
