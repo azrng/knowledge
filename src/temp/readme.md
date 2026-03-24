@@ -38,6 +38,21 @@ net start winnat
 ```
 
 ```
+pgsql 批量更新
+方案 6：Dapper + UNNEST ⭐ 最快（PostgreSQL）
+var ids = updates.Select(u => u.Id).ToArray();
+var processedAts = updates.Select(u => u.ProcessedAt).ToArray();
+
+await connection.ExecuteAsync(@"
+UPDATE orders
+SET processed_at = v.processed_at, status = 'Processed'
+FROM UNNEST(@Ids, @ProcessedAts) AS v(id, processed_at)
+WHERE orders.id = v.id",
+    new { Ids = ids, ProcessedAts = processedAts });
+
+```
+
+```
 python 3.13 镜像脚本
 # 使用官方 Python 3.13 镜像作为基础镜像
 FROM python:3.13-slim
