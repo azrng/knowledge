@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"第一次执行慢性能分析","image":["https://azrng.gitee.io/kbms/knowledge/common/1644063003069-a7a550c1-c987-45ad-bed2-74aa7cd9b6fd.webp","https://azrng.gitee.io/kbms/knowledge/common/1644063061682-66c65d9f-c361-4326-a444-e87d1ec2b7e1.webp","https://azrng.gitee.io/kbms/knowledge/common/1644063096645-6b0f1af1-c541-42a9-885b-3fbafd112378.webp","https://azrng.gitee.io/kbms/knowledge/common/1644063137407-a192a536-8b58-4c91-a8e9-8358f056e677.webp"],"datePublished":"2023-09-20T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/dotnet/debugging/jibendiaoshigongju/diyicizhihangmanxingnengfenxi.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="第一次执行慢性能分析"><meta property="og:description" content="前言 新建一个ASP.NET Core Web API项目，使用命令行方式启动，连续发送多次请求。 第一次执行（116ms）比后面的（2ms）慢了很多。 示例代码 为了更好定位Web API执行情况，示例Controller代码如下： Thread.Sleep用于将框架代码和业务执行代码执行时间分开 while循环用于延长业务执行时间，方便找到业务代码..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1644063003069-a7a550c1-c987-45ad-bed2-74aa7cd9b6fd.webp"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-09-20T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"第一次执行慢性能分析","image":["https://azrng.gitee.io/kbms/kbms/common/1644063003069-a7a550c1-c987-45ad-bed2-74aa7cd9b6fd.webp","https://azrng.gitee.io/kbms/kbms/common/1644063061682-66c65d9f-c361-4326-a444-e87d1ec2b7e1.webp","https://azrng.gitee.io/kbms/kbms/common/1644063096645-6b0f1af1-c541-42a9-885b-3fbafd112378.webp","https://azrng.gitee.io/kbms/kbms/common/1644063137407-a192a536-8b58-4c91-a8e9-8358f056e677.webp"],"datePublished":"2023-09-20T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dotnet/debugging/jibendiaoshigongju/diyicizhihangmanxingnengfenxi.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="第一次执行慢性能分析"><meta property="og:description" content="前言 新建一个ASP.NET Core Web API项目，使用命令行方式启动，连续发送多次请求。 第一次执行（116ms）比后面的（2ms）慢了很多。 示例代码 为了更好定位Web API执行情况，示例Controller代码如下： Thread.Sleep用于将框架代码和业务执行代码执行时间分开 while循环用于延长业务执行时间，方便找到业务代码..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1644063003069-a7a550c1-c987-45ad-bed2-74aa7cd9b6fd.webp"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-09-20T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>第一次执行慢性能分析 | 知识库</title><meta name="description" content="前言 新建一个ASP.NET Core Web API项目，使用命令行方式启动，连续发送多次请求。 第一次执行（116ms）比后面的（2ms）慢了很多。 示例代码 为了更好定位Web API执行情况，示例Controller代码如下： Thread.Sleep用于将框架代码和业务执行代码执行时间分开 while循环用于延长业务执行时间，方便找到业务代码...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/diyicizhihangmanxingnengfenxi.html-g7bjKw8z.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/diyicizhihangmanxingnengfenxi-CIXcX7HF.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

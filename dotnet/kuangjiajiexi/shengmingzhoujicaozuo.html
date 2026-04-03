@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"生命周期操作","image":["https://azrng.gitee.io/kbms/knowledge/common/1632197193604-9676a5f0-05ce-40ed-8e4a-02048e0730c5.png"],"datePublished":"2023-10-14T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/dotnet/kuangjiajiexi/shengmingzhoujicaozuo.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="生命周期操作"><meta property="og:description" content="获取启动的端口 使用场景：服务注册 方案来源自：微信公众号【MY IO】 Srart启动获取 正常我们是使用WebApplication.Run方法进行启动的，但是我们现在为了获取启动后的端口，我们可以不用Run方法启动，而是等待Start完成： 这是.Net6的才支持的实现方式。 查看源码后底层就是以下代码，那么就可以在其他版本中也使用了 Backg..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1632197193604-9676a5f0-05ce-40ed-8e4a-02048e0730c5.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-10-14T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"生命周期操作","image":["https://azrng.gitee.io/kbms/kbms/common/1632197193604-9676a5f0-05ce-40ed-8e4a-02048e0730c5.png"],"datePublished":"2023-10-14T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dotnet/kuangjiajiexi/shengmingzhoujicaozuo.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="生命周期操作"><meta property="og:description" content="获取启动的端口 使用场景：服务注册 方案来源自：微信公众号【MY IO】 Srart启动获取 正常我们是使用WebApplication.Run方法进行启动的，但是我们现在为了获取启动后的端口，我们可以不用Run方法启动，而是等待Start完成： 这是.Net6的才支持的实现方式。 查看源码后底层就是以下代码，那么就可以在其他版本中也使用了 Backg..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1632197193604-9676a5f0-05ce-40ed-8e4a-02048e0730c5.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-10-14T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>生命周期操作 | 知识库</title><meta name="description" content="获取启动的端口 使用场景：服务注册 方案来源自：微信公众号【MY IO】 Srart启动获取 正常我们是使用WebApplication.Run方法进行启动的，但是我们现在为了获取启动后的端口，我们可以不用Run方法启动，而是等待Start完成： 这是.Net6的才支持的实现方式。 查看源码后底层就是以下代码，那么就可以在其他版本中也使用了 Backg...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/shengmingzhoujicaozuo.html-CWJ2sqhj.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/shengmingzhoujicaozuo-Dkz0LYh-.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

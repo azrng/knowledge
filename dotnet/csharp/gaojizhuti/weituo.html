@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"委托","image":["https://azrng.gitee.io/kbms/knowledge/common/1613872694982-1b0b4a67-7fdb-41a5-86e3-c30a09086f9e.png"],"datePublished":"2023-10-22T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/dotnet/csharp/gaojizhuti/weituo.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="委托"><meta property="og:description" content="介绍 描述 委托(Delegate)由来，早在c/c++中，有一个概念叫做函数的指针，其实就是一个内存指针，指向一个函数，想去调用函数的时候，只要调用函数指针就可以了，至于函数本身的实现，可以放在其他地方，也可以后实现。到了net中，没有指针的概念，但是这种方法保存了下来，形成了现在的委托Delegate。委托本身也是一种引用类型，它保存的是托管堆中对..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1613872694982-1b0b4a67-7fdb-41a5-86e3-c30a09086f9e.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-10-22T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"委托","image":["https://azrng.gitee.io/kbms/kbms/common/1613872694982-1b0b4a67-7fdb-41a5-86e3-c30a09086f9e.png"],"datePublished":"2023-10-22T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dotnet/csharp/gaojizhuti/weituo.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="委托"><meta property="og:description" content="介绍 描述 委托(Delegate)由来，早在c/c++中，有一个概念叫做函数的指针，其实就是一个内存指针，指向一个函数，想去调用函数的时候，只要调用函数指针就可以了，至于函数本身的实现，可以放在其他地方，也可以后实现。到了net中，没有指针的概念，但是这种方法保存了下来，形成了现在的委托Delegate。委托本身也是一种引用类型，它保存的是托管堆中对..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1613872694982-1b0b4a67-7fdb-41a5-86e3-c30a09086f9e.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-10-22T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>委托 | 知识库</title><meta name="description" content="介绍 描述 委托(Delegate)由来，早在c/c++中，有一个概念叫做函数的指针，其实就是一个内存指针，指向一个函数，想去调用函数的时候，只要调用函数指针就可以了，至于函数本身的实现，可以放在其他地方，也可以后实现。到了net中，没有指针的概念，但是这种方法保存了下来，形成了现在的委托Delegate。委托本身也是一种引用类型，它保存的是托管堆中对...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/weituo.html-BdlONY2t.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/weituo-BCXe9azw.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

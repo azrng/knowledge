@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"K8s部署.NetCore","image":["https://azrng.gitee.io/kbms/knowledge/cloud/image-20250105214529874.png","https://azrng.gitee.io/kbms/knowledge/cloud/image-20250105214615773.png","https://azrng.gitee.io/kbms/knowledge/cloud/image-20250105164754572.png","https://azrng.gitee.io/kbms/knowledge/cloud/image-20250105171824882.png","https://azrng.gitee.io/kbms/knowledge/cloud/image-20250105171920751.png","https://azrng.gitee.io/kbms/knowledge/cloud/image-20250105174606450.png","https://azrng.gitee.io/kbms/knowledge/cloud/image-20250105205757583.png","https://azrng.gitee.io/kbms/knowledge/cloud/image-20250105205840698.png","https://azrng.gitee.io/kbms/knowledge/cloud/image-20250105210026959.png","https://azrng.gitee.io/kbms/knowledge/cloud/image-20250105212222524.png"],"datePublished":"2025-01-15T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/cloud/k8s/sample/k8sBuildNetCore.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="K8s部署.NetCore"><meta property="og:description" content="概述 使用Docker.Desktop工具来将.NetCore服务部署到k8s中 环境准备 Docker.Desktop并开启Kubernetes .Net服务 K8s环境验证 安装docker.Desktop桌面客户端，然后去设置里找到Kubernetes image-20250105214529874image-20250105214529874 ..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/cloud/image-20250105214529874.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="docker"><meta property="article:tag" content="k8s"><meta property="article:published_time" content="2025-01-15T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"K8s部署.NetCore","image":["https://azrng.gitee.io/kbms/kbms/cloud/image-20250105214529874.png","https://azrng.gitee.io/kbms/kbms/cloud/image-20250105214615773.png","https://azrng.gitee.io/kbms/kbms/cloud/image-20250105164754572.png","https://azrng.gitee.io/kbms/kbms/cloud/image-20250105171824882.png","https://azrng.gitee.io/kbms/kbms/cloud/image-20250105171920751.png","https://azrng.gitee.io/kbms/kbms/cloud/image-20250105174606450.png","https://azrng.gitee.io/kbms/kbms/cloud/image-20250105205757583.png","https://azrng.gitee.io/kbms/kbms/cloud/image-20250105205840698.png","https://azrng.gitee.io/kbms/kbms/cloud/image-20250105210026959.png","https://azrng.gitee.io/kbms/kbms/cloud/image-20250105212222524.png"],"datePublished":"2025-01-15T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/cloud/k8s/sample/k8sBuildNetCore.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="K8s部署.NetCore"><meta property="og:description" content="概述 使用Docker.Desktop工具来将.NetCore服务部署到k8s中 环境准备 Docker.Desktop并开启Kubernetes .Net服务 K8s环境验证 安装docker.Desktop桌面客户端，然后去设置里找到Kubernetes image-20250105214529874image-20250105214529874 ..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/cloud/image-20250105214529874.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="docker"><meta property="article:tag" content="k8s"><meta property="article:published_time" content="2025-01-15T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>K8s部署.NetCore | 知识库</title><meta name="description" content="概述 使用Docker.Desktop工具来将.NetCore服务部署到k8s中 环境准备 Docker.Desktop并开启Kubernetes .Net服务 K8s环境验证 安装docker.Desktop桌面客户端，然后去设置里找到Kubernetes image-20250105214529874image-20250105214529874 ...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/k8sBuildNetCore.html-VRiEfPiT.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/k8sBuildNetCore-BZrg7zCL.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

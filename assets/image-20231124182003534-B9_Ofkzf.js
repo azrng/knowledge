@@ -1,0 +1,1 @@
+var e=`/kbms/common/image-20231124182003534.png`;export{e as t};

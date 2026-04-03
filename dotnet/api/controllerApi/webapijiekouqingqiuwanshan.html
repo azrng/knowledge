@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"WebApi操作示例","image":["https://azrng.gitee.io/kbms/knowledge/common/1662823186138-84cf332f-1397-4d06-b863-0d52b240266b.png","https://azrng.gitee.io/kbms/knowledge/common/1662866734791-b11bbdd0-b027-4909-a853-e49e8f3a1ea8.png","https://azrng.gitee.io/kbms/knowledge/common/1662825041106-57360561-34bd-4633-877f-7304a4b5fe5d.png","https://azrng.gitee.io/kbms/knowledge/common/1662867846712-07cdbdf4-52c9-42e5-97dc-4353ceb05eaa.png","https://azrng.gitee.io/kbms/knowledge/common/1662887452094-03bbd8da-a4f8-49fe-97ba-66ab4e3729a7.png","https://azrng.gitee.io/kbms/knowledge/common/1662887879216-7df10bec-f42e-40fa-9e8d-c6802bca5405.png","https://azrng.gitee.io/kbms/knowledge/common/1662889332097-f3e058bb-b5f6-40e6-8426-e05734331bc0.png"],"datePublished":"2023-08-04T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/dotnet/api/controllerApi/webapijiekouqingqiuwanshan.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="WebApi操作示例"><meta property="og:description" content="目的 通过一个简单的项目，编写一些WebApi操作示例。 http状态码大全：https://www.php.cn/course/1020.html 本文示例代码环境：vs2022、net6 准备 新创建了一个.NetWebAPI程序，安装组件 ConfigureServices配置NewtonsoftJson以及Automapper和操作数据库代码(..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1662823186138-84cf332f-1397-4d06-b863-0d52b240266b.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-08-04T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"WebApi操作示例","image":["https://azrng.gitee.io/kbms/kbms/common/1662823186138-84cf332f-1397-4d06-b863-0d52b240266b.png","https://azrng.gitee.io/kbms/kbms/common/1662866734791-b11bbdd0-b027-4909-a853-e49e8f3a1ea8.png","https://azrng.gitee.io/kbms/kbms/common/1662825041106-57360561-34bd-4633-877f-7304a4b5fe5d.png","https://azrng.gitee.io/kbms/kbms/common/1662867846712-07cdbdf4-52c9-42e5-97dc-4353ceb05eaa.png","https://azrng.gitee.io/kbms/kbms/common/1662887452094-03bbd8da-a4f8-49fe-97ba-66ab4e3729a7.png","https://azrng.gitee.io/kbms/kbms/common/1662887879216-7df10bec-f42e-40fa-9e8d-c6802bca5405.png","https://azrng.gitee.io/kbms/kbms/common/1662889332097-f3e058bb-b5f6-40e6-8426-e05734331bc0.png"],"datePublished":"2023-08-04T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dotnet/api/controllerApi/webapijiekouqingqiuwanshan.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="WebApi操作示例"><meta property="og:description" content="目的 通过一个简单的项目，编写一些WebApi操作示例。 http状态码大全：https://www.php.cn/course/1020.html 本文示例代码环境：vs2022、net6 准备 新创建了一个.NetWebAPI程序，安装组件 ConfigureServices配置NewtonsoftJson以及Automapper和操作数据库代码(..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1662823186138-84cf332f-1397-4d06-b863-0d52b240266b.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-08-04T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>WebApi操作示例 | 知识库</title><meta name="description" content="目的 通过一个简单的项目，编写一些WebApi操作示例。 http状态码大全：https://www.php.cn/course/1020.html 本文示例代码环境：vs2022、net6 准备 新创建了一个.NetWebAPI程序，安装组件 ConfigureServices配置NewtonsoftJson以及Automapper和操作数据库代码(...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/webapijiekouqingqiuwanshan.html-wXt-cVdh.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/webapijiekouqingqiuwanshan-JdqyxKd5.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

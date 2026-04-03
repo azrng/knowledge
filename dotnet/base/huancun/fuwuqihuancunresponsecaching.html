@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"服务器缓存ResponseCaching","image":["https://azrng.gitee.io/kbms/knowledge/common/1629346436931-7827203b-7003-4c14-8397-b1ba3a67bee4.png","https://azrng.gitee.io/kbms/knowledge/common/1629345827282-1af8d8e0-a0c8-44e5-9e39-2de2cdec1f62.png"],"datePublished":"2023-08-20T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/dotnet/base/huancun/fuwuqihuancunresponsecaching.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="服务器缓存ResponseCaching"><meta property="og:description" content="介绍 服务端缓存，将东西存储在服务器，如果服务器缓存中有，那么就直接返回结果，并不会重新访问Action的内容。 可以对来自不同客户端的相同请求或者不支持客户端缓存的客户端进行处理，能降级服务器端的压力。 操作 ConfigureServices使用 Configure使用 方法上使用 参数说明 Duration：用于指定 Response Cache..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1629346436931-7827203b-7003-4c14-8397-b1ba3a67bee4.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-08-20T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"服务器缓存ResponseCaching","image":["https://azrng.gitee.io/kbms/kbms/common/1629346436931-7827203b-7003-4c14-8397-b1ba3a67bee4.png","https://azrng.gitee.io/kbms/kbms/common/1629345827282-1af8d8e0-a0c8-44e5-9e39-2de2cdec1f62.png"],"datePublished":"2023-08-20T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dotnet/base/huancun/fuwuqihuancunresponsecaching.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="服务器缓存ResponseCaching"><meta property="og:description" content="介绍 服务端缓存，将东西存储在服务器，如果服务器缓存中有，那么就直接返回结果，并不会重新访问Action的内容。 可以对来自不同客户端的相同请求或者不支持客户端缓存的客户端进行处理，能降级服务器端的压力。 操作 ConfigureServices使用 Configure使用 方法上使用 参数说明 Duration：用于指定 Response Cache..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1629346436931-7827203b-7003-4c14-8397-b1ba3a67bee4.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-08-20T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>服务器缓存ResponseCaching | 知识库</title><meta name="description" content="介绍 服务端缓存，将东西存储在服务器，如果服务器缓存中有，那么就直接返回结果，并不会重新访问Action的内容。 可以对来自不同客户端的相同请求或者不支持客户端缓存的客户端进行处理，能降级服务器端的压力。 操作 ConfigureServices使用 Configure使用 方法上使用 参数说明 Duration：用于指定 Response Cache...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/fuwuqihuancunresponsecaching.html-DNfv69UU.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/fuwuqihuancunresponsecaching-Dt9rHvS6.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

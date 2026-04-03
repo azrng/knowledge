@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"代码优先","image":["https://azrng.gitee.io/kbms/knowledge/common/1611801961116-4908455e-ee6b-4d90-baba-5a673c7ffa7c.png","https://azrng.gitee.io/kbms/knowledge/common/1611802002383-03013f37-0582-4615-8231-f5d782515bce.png"],"datePublished":"2023-07-16T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/orm/efcore/migration/codeFirst.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="代码优先"><meta property="og:description" content="概述 根据项目里面的对象上下文和对象实体类生成数据库，通过程序包管理控制器操作 安装组件 另外不同的数据库还需要安装不同的组件进行迁移数据库的操作 MySQL：Pomelo.EntityFrameworkCore.MySql Sql Server：Microsoft.EntityFrameworkCore.SqlServer sqlite：Micros..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1611801961116-4908455e-ee6b-4d90-baba-5a673c7ffa7c.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="迁移"><meta property="article:published_time" content="2023-07-16T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"代码优先","image":["https://azrng.gitee.io/kbms/kbms/common/1611801961116-4908455e-ee6b-4d90-baba-5a673c7ffa7c.png","https://azrng.gitee.io/kbms/kbms/common/1611802002383-03013f37-0582-4615-8231-f5d782515bce.png"],"datePublished":"2023-07-16T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/orm/efcore/migration/codeFirst.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="代码优先"><meta property="og:description" content="概述 根据项目里面的对象上下文和对象实体类生成数据库，通过程序包管理控制器操作 安装组件 另外不同的数据库还需要安装不同的组件进行迁移数据库的操作 MySQL：Pomelo.EntityFrameworkCore.MySql Sql Server：Microsoft.EntityFrameworkCore.SqlServer sqlite：Micros..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1611801961116-4908455e-ee6b-4d90-baba-5a673c7ffa7c.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="迁移"><meta property="article:published_time" content="2023-07-16T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>代码优先 | 知识库</title><meta name="description" content="概述 根据项目里面的对象上下文和对象实体类生成数据库，通过程序包管理控制器操作 安装组件 另外不同的数据库还需要安装不同的组件进行迁移数据库的操作 MySQL：Pomelo.EntityFrameworkCore.MySql Sql Server：Microsoft.EntityFrameworkCore.SqlServer sqlite：Micros...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/codeFirst.html-BlD4TtQD.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/codeFirst-InTFTrd9.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

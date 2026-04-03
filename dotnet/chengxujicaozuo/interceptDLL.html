@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"拦截|篡改|伪造.NET类库中不限于public的类和方法","image":["https://azrng.gitee.io/kbms/knowledge/common/c1fdf6f765474cbd95660870fa28b408.png","https://azrng.gitee.io/kbms/knowledge/common/79966f0546eb43a8a4b2e1bdc28b05e7.png"],"datePublished":"2023-09-24T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"沙漠尽头的狼"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/dotnet/chengxujicaozuo/interceptDLL.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="拦截|篡改|伪造.NET类库中不限于public的类和方法"><meta property="og:description" content="1. 什么是方法拦截？ 方法拦截是指在方法被调用之前或之后，通过插入自定义的代码来修改方法的行为。通过方法拦截，开发人员可以在不修改原始代码的情况下，对方法的输入参数进行验证、修改方法的返回值、记录方法的调用日志等操作。 本文使用Lib.Harmony库实现第三方库方法的拦截，关于该库站长写过[快学会这个技能-.NET API拦截技法](快学会这个技能..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/c1fdf6f765474cbd95660870fa28b408.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="沙漠尽头的狼"><meta property="article:tag" content="Lib.Harmony"><meta property="article:published_time" content="2023-09-24T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"拦截|篡改|伪造.NET类库中不限于public的类和方法","image":["https://azrng.gitee.io/kbms/kbms/common/c1fdf6f765474cbd95660870fa28b408.png","https://azrng.gitee.io/kbms/kbms/common/79966f0546eb43a8a4b2e1bdc28b05e7.png"],"datePublished":"2023-09-24T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"沙漠尽头的狼"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dotnet/chengxujicaozuo/interceptDLL.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="拦截|篡改|伪造.NET类库中不限于public的类和方法"><meta property="og:description" content="1. 什么是方法拦截？ 方法拦截是指在方法被调用之前或之后，通过插入自定义的代码来修改方法的行为。通过方法拦截，开发人员可以在不修改原始代码的情况下，对方法的输入参数进行验证、修改方法的返回值、记录方法的调用日志等操作。 本文使用Lib.Harmony库实现第三方库方法的拦截，关于该库站长写过[快学会这个技能-.NET API拦截技法](快学会这个技能..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/c1fdf6f765474cbd95660870fa28b408.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="沙漠尽头的狼"><meta property="article:tag" content="Lib.Harmony"><meta property="article:published_time" content="2023-09-24T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>拦截|篡改|伪造.NET类库中不限于public的类和方法 | 知识库</title><meta name="description" content="1. 什么是方法拦截？ 方法拦截是指在方法被调用之前或之后，通过插入自定义的代码来修改方法的行为。通过方法拦截，开发人员可以在不修改原始代码的情况下，对方法的输入参数进行验证、修改方法的返回值、记录方法的调用日志等操作。 本文使用Lib.Harmony库实现第三方库方法的拦截，关于该库站长写过[快学会这个技能-.NET API拦截技法](快学会这个技能...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/interceptDLL.html-CXjzJRyS.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/interceptDLL-Cpo9AWD4.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

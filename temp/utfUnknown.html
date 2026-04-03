@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"正文内容","image":[""],"dateModified":"2026-03-20T09:40:37.000Z","author":[{"@type":"Person","name":"AZRNG","url":"https://azrng.gitee.io"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/temp/utfUnknown.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="正文内容"><meta property="og:description" content="正文内容 👋 导读 在做业务系统开发时，读取外部文本文件是一个非常常见的需求。特别是在国内环境下，GB2312、GBK 和 UTF-8 几种编码格式混用的情况经常出现。 很多开发者（包括我自己）的第一反应，通常是写一个“先尝试 UTF-8，失败再回退到 GBK”的逻辑。但你知道吗？这种写法其实存在一个致命的陷阱，它根本无法解决乱码问题。 今天我们就来..."><meta property="og:type" content="article"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-20T09:40:37.000Z"><meta property="article:modified_time" content="2026-03-20T09:40:37.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"彻底告别中文乱码：推荐一个强大的 .NET 编码检测库","image":[""],"datePublished":"2026-03-20T00:00:00.000Z","dateModified":"2026-04-03T08:17:13.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/temp/utfUnknown.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="彻底告别中文乱码：推荐一个强大的 .NET 编码检测库"><meta property="og:description" content="👋 导读 在做业务系统开发时，读取外部文本文件是一个非常常见的需求。特别是在国内环境下，GB2312、GBK 和 UTF-8 几种编码格式混用的情况经常出现。 很多开发者（包括我自己）的第一反应，通常是写一个“先尝试 UTF-8，失败再回退到 GBK”的逻辑。但你知道吗？这种写法其实存在一个致命的陷阱，它根本无法解决乱码问题。 今天我们就来聊聊这个坑..."><meta property="og:type" content="article"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-04-03T08:17:13.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="文章"><meta property="article:published_time" content="2026-03-20T00:00:00.000Z"><meta property="article:modified_time" content="2026-04-03T08:17:13.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -36,13 +36,13 @@
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
-    </script><title>正文内容 | 知识库</title><meta name="description" content="正文内容 👋 导读 在做业务系统开发时，读取外部文本文件是一个非常常见的需求。特别是在国内环境下，GB2312、GBK 和 UTF-8 几种编码格式混用的情况经常出现。 很多开发者（包括我自己）的第一反应，通常是写一个“先尝试 UTF-8，失败再回退到 GBK”的逻辑。但你知道吗？这种写法其实存在一个致命的陷阱，它根本无法解决乱码问题。 今天我们就来...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/utfUnknown.html-5xT9-FE6.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    </script><title>彻底告别中文乱码：推荐一个强大的 .NET 编码检测库 | 知识库</title><meta name="description" content="👋 导读 在做业务系统开发时，读取外部文本文件是一个非常常见的需求。特别是在国内环境下，GB2312、GBK 和 UTF-8 几种编码格式混用的情况经常出现。 很多开发者（包括我自己）的第一反应，通常是写一个“先尝试 UTF-8，失败再回退到 GBK”的逻辑。但你知道吗？这种写法其实存在一个致命的陷阱，它根本无法解决乱码问题。 今天我们就来聊聊这个坑...">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/utfUnknown-DMUAUIw2.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

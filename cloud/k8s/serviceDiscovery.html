@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"服务发现","image":["https://azrng.gitee.io/kbms/knowledge/common/1688296195215-e21cff78-df7f-43a8-be43-945bd5fbe280.webp","https://azrng.gitee.io/kbms/knowledge/common/1688296195249-0c8f16f8-c395-4afe-a456-8758ab72c734.webp","https://azrng.gitee.io/kbms/knowledge/common/1688296195223-e6089e4f-c260-41c0-820b-c8992d9611bd.webp","https://azrng.gitee.io/kbms/knowledge/common/1688296195254-6e00ad6d-d890-4215-862b-5ae6c198ad34.webp","https://azrng.gitee.io/kbms/knowledge/common/1688296195246-66692dcf-c3e0-4715-a158-b1ec80ef9384.webp","https://azrng.gitee.io/kbms/knowledge/common/1688296195567-11f62728-bdeb-4f3f-9bcd-fd11a5530bc7.webp","https://azrng.gitee.io/kbms/knowledge/common/1688296195587-b552954e-158a-45ec-8b10-81ab20c7d8fd.webp","https://azrng.gitee.io/kbms/knowledge/common/1688296195766-a8522b5e-f0b2-4f0d-a4f7-48a571e29c20.webp","https://azrng.gitee.io/kbms/knowledge/common/1688296195707-925ed1e1-7734-41b8-87f2-c9d47ee5a6af.webp"],"datePublished":"2023-07-02T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"杰哥的IT之旅"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/cloud/k8s/serviceDiscovery.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="服务发现"><meta property="og:description" content="K8S 服务发现之旅 Kubernetes 服务发现是一个经常让我产生困惑的主题之一。本文分为两个部分： 网络方面的背景知识 深入了解 Kubernetes 服务发现 要了解服务发现，首先要了解背后的网络知识。这部分内容相对浅显，如果读者熟知这一部分，完全可以跳过，直接阅读服务发现部分。 开始之前还有一个需要提醒的事情就是，为了详细描述这一过程，本文略..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1688296195215-e21cff78-df7f-43a8-be43-945bd5fbe280.webp"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="杰哥的IT之旅"><meta property="article:tag" content="服务发现"><meta property="article:published_time" content="2023-07-02T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"服务发现","image":["https://azrng.gitee.io/kbms/kbms/common/1688296195215-e21cff78-df7f-43a8-be43-945bd5fbe280.webp","https://azrng.gitee.io/kbms/kbms/common/1688296195249-0c8f16f8-c395-4afe-a456-8758ab72c734.webp","https://azrng.gitee.io/kbms/kbms/common/1688296195223-e6089e4f-c260-41c0-820b-c8992d9611bd.webp","https://azrng.gitee.io/kbms/kbms/common/1688296195254-6e00ad6d-d890-4215-862b-5ae6c198ad34.webp","https://azrng.gitee.io/kbms/kbms/common/1688296195246-66692dcf-c3e0-4715-a158-b1ec80ef9384.webp","https://azrng.gitee.io/kbms/kbms/common/1688296195567-11f62728-bdeb-4f3f-9bcd-fd11a5530bc7.webp","https://azrng.gitee.io/kbms/kbms/common/1688296195587-b552954e-158a-45ec-8b10-81ab20c7d8fd.webp","https://azrng.gitee.io/kbms/kbms/common/1688296195766-a8522b5e-f0b2-4f0d-a4f7-48a571e29c20.webp","https://azrng.gitee.io/kbms/kbms/common/1688296195707-925ed1e1-7734-41b8-87f2-c9d47ee5a6af.webp"],"datePublished":"2023-07-02T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"杰哥的IT之旅"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/cloud/k8s/serviceDiscovery.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="服务发现"><meta property="og:description" content="K8S 服务发现之旅 Kubernetes 服务发现是一个经常让我产生困惑的主题之一。本文分为两个部分： 网络方面的背景知识 深入了解 Kubernetes 服务发现 要了解服务发现，首先要了解背后的网络知识。这部分内容相对浅显，如果读者熟知这一部分，完全可以跳过，直接阅读服务发现部分。 开始之前还有一个需要提醒的事情就是，为了详细描述这一过程，本文略..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1688296195215-e21cff78-df7f-43a8-be43-945bd5fbe280.webp"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="杰哥的IT之旅"><meta property="article:tag" content="服务发现"><meta property="article:published_time" content="2023-07-02T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>服务发现 | 知识库</title><meta name="description" content="K8S 服务发现之旅 Kubernetes 服务发现是一个经常让我产生困惑的主题之一。本文分为两个部分： 网络方面的背景知识 深入了解 Kubernetes 服务发现 要了解服务发现，首先要了解背后的网络知识。这部分内容相对浅显，如果读者熟知这一部分，完全可以跳过，直接阅读服务发现部分。 开始之前还有一个需要提醒的事情就是，为了详细描述这一过程，本文略...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/serviceDiscovery.html-3mlA249n.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/serviceDiscovery-DPD-h6ct.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"分布式事务","image":["https://azrng.gitee.io/kbms/knowledge/common/1610857066845-9bbc20c4-ebd1-4e9a-9149-1ac0b6ba499a.png"],"datePublished":"2023-04-02T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/middleware/smallService/fenbushishiwu/fenbushishiwu.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="分布式事务"><meta property="og:description" content="概述 Rabbitmq.cap只能算分布式应用框架，实现了本地消息表模式，dtm才是纯粹的分布式事务框架 场景 一个项目对应一个数据库，这种单机业务是平时处理的比较多的；这里主要归纳一下会出现分布式事务的场景。 一个项目对个数据库 在一个下纲目中，同时连接了两个数据库，分别操作两个数据库，并且确保两次操作要不都成功，要不都失败，这就需要分布式事务进行处..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1610857066845-9bbc20c4-ebd1-4e9a-9149-1ac0b6ba499a.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-04-02T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"分布式事务","image":["https://azrng.gitee.io/kbms/kbms/common/1610857066845-9bbc20c4-ebd1-4e9a-9149-1ac0b6ba499a.png"],"datePublished":"2023-04-02T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/middleware/smallService/fenbushishiwu/fenbushishiwu.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="分布式事务"><meta property="og:description" content="概述 Rabbitmq.cap只能算分布式应用框架，实现了本地消息表模式，dtm才是纯粹的分布式事务框架 场景 一个项目对应一个数据库，这种单机业务是平时处理的比较多的；这里主要归纳一下会出现分布式事务的场景。 一个项目对个数据库 在一个下纲目中，同时连接了两个数据库，分别操作两个数据库，并且确保两次操作要不都成功，要不都失败，这就需要分布式事务进行处..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1610857066845-9bbc20c4-ebd1-4e9a-9149-1ac0b6ba499a.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-04-02T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>分布式事务 | 知识库</title><meta name="description" content="概述 Rabbitmq.cap只能算分布式应用框架，实现了本地消息表模式，dtm才是纯粹的分布式事务框架 场景 一个项目对应一个数据库，这种单机业务是平时处理的比较多的；这里主要归纳一下会出现分布式事务的场景。 一个项目对个数据库 在一个下纲目中，同时连接了两个数据库，分别操作两个数据库，并且确保两次操作要不都成功，要不都失败，这就需要分布式事务进行处...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/fenbushishiwu.html-CR2uH-XL.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/fenbushishiwu-CojXbDbv.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

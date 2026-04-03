@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"并发操作","image":[""],"datePublished":"2023-10-22T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/dotnet/csharp/threadConcurrencyAndAsync/concurrency.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="并发操作"><meta property="og:description" content="介绍 并发指的是同时执行多个任务或进程，这些任务可能交替进行，每个任务只占用少量时间片。在单个处理器上，实现并发通常采用分时操作系统或者线程技术。在并发环境中，可以同时处理多个任务，不论是通过时间片轮转还在单核处理器上还是在多核处理器上。 场景 编写快速响应的用户界面：需要并发执行耗时的任务以保证用户界面的响应性 可以处理同时出现的请求：客户端请求并发..."><meta property="og:type" content="article"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="thread"><meta property="article:published_time" content="2023-10-22T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"并发操作","image":[""],"datePublished":"2023-10-22T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dotnet/csharp/threadConcurrencyAndAsync/concurrency.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="并发操作"><meta property="og:description" content="介绍 并发指的是同时执行多个任务或进程，这些任务可能交替进行，每个任务只占用少量时间片。在单个处理器上，实现并发通常采用分时操作系统或者线程技术。在并发环境中，可以同时处理多个任务，不论是通过时间片轮转还在单核处理器上还是在多核处理器上。 场景 编写快速响应的用户界面：需要并发执行耗时的任务以保证用户界面的响应性 可以处理同时出现的请求：客户端请求并发..."><meta property="og:type" content="article"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="thread"><meta property="article:published_time" content="2023-10-22T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>并发操作 | 知识库</title><meta name="description" content="介绍 并发指的是同时执行多个任务或进程，这些任务可能交替进行，每个任务只占用少量时间片。在单个处理器上，实现并发通常采用分时操作系统或者线程技术。在并发环境中，可以同时处理多个任务，不论是通过时间片轮转还在单核处理器上还是在多核处理器上。 场景 编写快速响应的用户界面：需要并发执行耗时的任务以保证用户界面的响应性 可以处理同时出现的请求：客户端请求并发...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/concurrency.html-ZnJPxUAJ.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/concurrency-BWIR5Arh.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

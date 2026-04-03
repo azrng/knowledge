@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"FeatureManagement","image":["https://azrng.gitee.io/kbms/knowledge/common/1620829882545-2591e49c-b0b0-4edf-850f-62a44d8af05f.png"],"datePublished":"2023-08-04T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/dotnet/base/peizhikuangjia/peizhikaiguan/featuremanagement.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="FeatureManagement"><meta property="og:description" content="介绍 通过一些简单的配置文件配置来决定某一个功能是否开启，方便快捷。 示例环境：vs2019、net5 引用组件包 Microsoft.FeatureManagement.AspNetCore 简单使用 配置文件 注入容器 控制器使用 通过这个if去判断是否执行 image.pngimage.png 对整个控制器or单个action控制 如果状态改为f..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1620829882545-2591e49c-b0b0-4edf-850f-62a44d8af05f.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-08-04T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"FeatureManagement","image":["https://azrng.gitee.io/kbms/kbms/common/1620829882545-2591e49c-b0b0-4edf-850f-62a44d8af05f.png"],"datePublished":"2023-08-04T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dotnet/base/peizhikuangjia/peizhikaiguan/featuremanagement.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="FeatureManagement"><meta property="og:description" content="介绍 通过一些简单的配置文件配置来决定某一个功能是否开启，方便快捷。 示例环境：vs2019、net5 引用组件包 Microsoft.FeatureManagement.AspNetCore 简单使用 配置文件 注入容器 控制器使用 通过这个if去判断是否执行 image.pngimage.png 对整个控制器or单个action控制 如果状态改为f..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1620829882545-2591e49c-b0b0-4edf-850f-62a44d8af05f.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-08-04T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>FeatureManagement | 知识库</title><meta name="description" content="介绍 通过一些简单的配置文件配置来决定某一个功能是否开启，方便快捷。 示例环境：vs2019、net5 引用组件包 Microsoft.FeatureManagement.AspNetCore 简单使用 配置文件 注入容器 控制器使用 通过这个if去判断是否执行 image.pngimage.png 对整个控制器or单个action控制 如果状态改为f...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/featuremanagement.html-7yMVMImW.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/featuremanagement-BNpLc0dg.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

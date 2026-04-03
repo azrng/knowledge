@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"混合模式","image":["https://azrng.gitee.io/kbms/knowledge/common/1651398849140-1507e165-f8a2-4ccb-aea2-6d788f24cf0a.png","https://azrng.gitee.io/kbms/knowledge/common/1651398875751-b8630de8-33d8-49c0-9330-160f79659577.png","https://azrng.gitee.io/kbms/knowledge/common/1651398898779-ec157d06-b32b-49fd-be09-c672ab45d1c8.png"],"datePublished":"2023-10-19T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/middleware/authorize/identityserver4/mode/hybridMode.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="混合模式"><meta property="og:description" content="前言 在上一篇关于授权码模式中， 已经介绍了关于授权码的基本内容，认识到这是一个拥有更为安全的机制,但这个仍然存在局限，虽然在文中我们说到通过后端的方式去获取token,这种由web服务器和授权服务器直接通信，不需要经过用户的浏览器或者其他的地方，但是在这种模式中，授权码仍然是通过前端通道进行传递的，而且在访问资源的中，也会将访问令牌暴露给外界，就仍存..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1651398849140-1507e165-f8a2-4ccb-aea2-6d788f24cf0a.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-10-19T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"混合模式","image":["https://azrng.gitee.io/kbms/kbms/common/1651398849140-1507e165-f8a2-4ccb-aea2-6d788f24cf0a.png","https://azrng.gitee.io/kbms/kbms/common/1651398875751-b8630de8-33d8-49c0-9330-160f79659577.png","https://azrng.gitee.io/kbms/kbms/common/1651398898779-ec157d06-b32b-49fd-be09-c672ab45d1c8.png"],"datePublished":"2023-10-19T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/middleware/authorize/identityserver4/mode/hybridMode.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="混合模式"><meta property="og:description" content="前言 在上一篇关于授权码模式中， 已经介绍了关于授权码的基本内容，认识到这是一个拥有更为安全的机制,但这个仍然存在局限，虽然在文中我们说到通过后端的方式去获取token,这种由web服务器和授权服务器直接通信，不需要经过用户的浏览器或者其他的地方，但是在这种模式中，授权码仍然是通过前端通道进行传递的，而且在访问资源的中，也会将访问令牌暴露给外界，就仍存..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1651398849140-1507e165-f8a2-4ccb-aea2-6d788f24cf0a.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-10-19T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>混合模式 | 知识库</title><meta name="description" content="前言 在上一篇关于授权码模式中， 已经介绍了关于授权码的基本内容，认识到这是一个拥有更为安全的机制,但这个仍然存在局限，虽然在文中我们说到通过后端的方式去获取token,这种由web服务器和授权服务器直接通信，不需要经过用户的浏览器或者其他的地方，但是在这种模式中，授权码仍然是通过前端通道进行传递的，而且在访问资源的中，也会将访问令牌暴露给外界，就仍存...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/hybridMode.html-wW0Dwgte.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/hybridMode-Tm2vxLxN.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

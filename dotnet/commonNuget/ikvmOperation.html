@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"IKVM操作","image":["https://azrng.gitee.io/kbms/knowledge/common/image-20231124231530451.png","https://azrng.gitee.io/kbms/knowledge/common/image-20231122232453826.png","https://azrng.gitee.io/kbms/knowledge/common/image-20231123123451650.png"],"datePublished":"2023-09-24T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/dotnet/commonNuget/ikvmOperation.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="IKVM操作"><meta property="og:description" content="IKVM是什么？ 从GitHub摘抄说明：IKVM 是 Microsoft .NET 平台的 Java 实现。它可用于快速轻松地： 在 .NET Framework 或 .NET Core 上执行已编译的 Java 代码（字节码） 将字节码转换为 .NET 程序集，以在 .NET 项目中直接访问其 API 无需将源代码移植到 .NET 即可完成这些任务..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/image-20231124231530451.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="ikvm"><meta property="article:published_time" content="2023-09-24T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"IKVM操作","image":["https://azrng.gitee.io/kbms/kbms/common/image-20231124231530451.png","https://azrng.gitee.io/kbms/kbms/common/image-20231122232453826.png","https://azrng.gitee.io/kbms/kbms/common/image-20231123123451650.png"],"datePublished":"2023-09-24T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dotnet/commonNuget/ikvmOperation.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="IKVM操作"><meta property="og:description" content="IKVM是什么？ 从GitHub摘抄说明：IKVM 是 Microsoft .NET 平台的 Java 实现。它可用于快速轻松地： 在 .NET Framework 或 .NET Core 上执行已编译的 Java 代码（字节码） 将字节码转换为 .NET 程序集，以在 .NET 项目中直接访问其 API 无需将源代码移植到 .NET 即可完成这些任务..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/image-20231124231530451.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="ikvm"><meta property="article:published_time" content="2023-09-24T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>IKVM操作 | 知识库</title><meta name="description" content="IKVM是什么？ 从GitHub摘抄说明：IKVM 是 Microsoft .NET 平台的 Java 实现。它可用于快速轻松地： 在 .NET Framework 或 .NET Core 上执行已编译的 Java 代码（字节码） 将字节码转换为 .NET 程序集，以在 .NET 项目中直接访问其 API 无需将源代码移植到 .NET 即可完成这些任务...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/ikvmOperation.html-Bry17GAy.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/ikvmOperation-BR2jjTfj.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"表达式树","image":["https://azrng.gitee.io/kbms/knowledge/common/1671202693169-f39655ca-641f-40fe-bd95-be921d3b41aa.png","https://azrng.gitee.io/kbms/knowledge/common/1671202706366-58d80567-a4e2-406f-bfe1-546cc31eda2f.png"],"datePublished":"2023-10-22T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/dotnet/csharp/gaojizhuti/biaodashishu.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="表达式树"><meta property="og:description" content="概述 表达式树是用树形数据结构来表示代码逻辑运算的技术，它让我们可以在运行时访问逻辑运算的结构。 和委托关系 表达式树其实与委托已经没什么关系了，非要扯上关系，那就这么说吧，表达式树是存放委托的容器。 要用Lambda表达式的时候，直接从表达式中获取出来，Compile()就可以直接用了。如下代码： Expression对象存储了运算逻辑，它把运算逻辑..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1671202693169-f39655ca-641f-40fe-bd95-be921d3b41aa.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-10-22T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"表达式树","image":["https://azrng.gitee.io/kbms/kbms/common/1671202693169-f39655ca-641f-40fe-bd95-be921d3b41aa.png","https://azrng.gitee.io/kbms/kbms/common/1671202706366-58d80567-a4e2-406f-bfe1-546cc31eda2f.png"],"datePublished":"2023-10-22T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dotnet/csharp/gaojizhuti/biaodashishu.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="表达式树"><meta property="og:description" content="概述 表达式树是用树形数据结构来表示代码逻辑运算的技术，它让我们可以在运行时访问逻辑运算的结构。 和委托关系 表达式树其实与委托已经没什么关系了，非要扯上关系，那就这么说吧，表达式树是存放委托的容器。 要用Lambda表达式的时候，直接从表达式中获取出来，Compile()就可以直接用了。如下代码： Expression对象存储了运算逻辑，它把运算逻辑..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1671202693169-f39655ca-641f-40fe-bd95-be921d3b41aa.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-10-22T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>表达式树 | 知识库</title><meta name="description" content="概述 表达式树是用树形数据结构来表示代码逻辑运算的技术，它让我们可以在运行时访问逻辑运算的结构。 和委托关系 表达式树其实与委托已经没什么关系了，非要扯上关系，那就这么说吧，表达式树是存放委托的容器。 要用Lambda表达式的时候，直接从表达式中获取出来，Compile()就可以直接用了。如下代码： Expression对象存储了运算逻辑，它把运算逻辑...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/biaodashishu.html-DCH1KdT8.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/biaodashishu-D8yD_9-o.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"主从复制","image":["https://azrng.gitee.io/kbms/knowledge/common/1614056262236-4899a721-3403-46ad-9e2e-eadb3ccac404.jpeg"],"datePublished":"2023-09-03T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/dataBase/mysql/jinjie/zhucongfuzhi.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="主从复制"><meta property="og:description" content="概述 image.jpeg （1）Master将改变记录到二进制日志(binary log)中（这些记录叫做二进制日志事件，binary log events）； （2）Slave将Master的二进制日志事件(binary log events)拷贝到它的中继日志(relay log)； 注：Slave服务器中有一个I/O线程(I/O Thread)..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/1614056262236-4899a721-3403-46ad-9e2e-eadb3ccac404.jpeg"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-09-03T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"主从复制","image":["https://azrng.gitee.io/kbms/kbms/common/1614056262236-4899a721-3403-46ad-9e2e-eadb3ccac404.jpeg"],"datePublished":"2023-09-03T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/dataBase/mysql/jinjie/zhucongfuzhi.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="主从复制"><meta property="og:description" content="概述 image.jpeg （1）Master将改变记录到二进制日志(binary log)中（这些记录叫做二进制日志事件，binary log events）； （2）Slave将Master的二进制日志事件(binary log events)拷贝到它的中继日志(relay log)； 注：Slave服务器中有一个I/O线程(I/O Thread)..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/1614056262236-4899a721-3403-46ad-9e2e-eadb3ccac404.jpeg"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="无"><meta property="article:published_time" content="2023-09-03T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>主从复制 | 知识库</title><meta name="description" content="概述 image.jpeg （1）Master将改变记录到二进制日志(binary log)中（这些记录叫做二进制日志事件，binary log events）； （2）Slave将Master的二进制日志事件(binary log events)拷贝到它的中继日志(relay log)； 注：Slave服务器中有一个I/O线程(I/O Thread)...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/zhucongfuzhi.html-D6anRP0S.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/zhucongfuzhi-BYBthdbT.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

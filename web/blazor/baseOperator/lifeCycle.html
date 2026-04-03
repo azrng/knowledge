@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.26" />
-    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.103" />
+    <meta name="generator" content="VuePress 2.0.0-rc.28" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.106" />
     <style>
       :root {
         --vp-c-bg: #fff;
@@ -28,7 +28,7 @@
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"组件生命周期","image":["https://azrng.gitee.io/kbms/knowledge/common/0725C008-51A4-4BB2-9968-2491DB040D3C.png"],"datePublished":"2023-12-14T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/knowledge/web/blazor/baseOperator/lifeCycle.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="组件生命周期"><meta property="og:description" content="概述 Blazor 组件具有定义完善的生命周期，该生命周期从首次创建时开始，在销毁时结束。 组件生命周期由一组事件控制，这些事件响应特定触发器。 例如组件被初始化、用户与组件交互或组件所在的页面被关闭。 组件生命周期 Blazor 组件表示 Blazor 应用中的视图，它们定义布局和 UI 逻辑。 应用运行时，这些组件会生成 HTML 标记。 用户交互..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/knowledge/common/0725C008-51A4-4BB2-9968-2491DB040D3C.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="life"><meta property="article:tag" content="blazor"><meta property="article:published_time" content="2023-12-14T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"组件生命周期","image":["https://azrng.gitee.io/kbms/kbms/common/0725C008-51A4-4BB2-9968-2491DB040D3C.png"],"datePublished":"2023-12-14T00:00:00.000Z","dateModified":"2026-03-06T15:39:41.000Z","author":[{"@type":"Person","name":"azrng"}]}</script><meta property="og:url" content="https://azrng.gitee.io/kbms/kbms/web/blazor/baseOperator/lifeCycle.html"><meta property="og:site_name" content="知识库"><meta property="og:title" content="组件生命周期"><meta property="og:description" content="概述 Blazor 组件具有定义完善的生命周期，该生命周期从首次创建时开始，在销毁时结束。 组件生命周期由一组事件控制，这些事件响应特定触发器。 例如组件被初始化、用户与组件交互或组件所在的页面被关闭。 组件生命周期 Blazor 组件表示 Blazor 应用中的视图，它们定义布局和 UI 逻辑。 应用运行时，这些组件会生成 HTML 标记。 用户交互..."><meta property="og:type" content="article"><meta property="og:image" content="https://azrng.gitee.io/kbms/kbms/common/0725C008-51A4-4BB2-9968-2491DB040D3C.png"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2026-03-06T15:39:41.000Z"><meta property="article:author" content="azrng"><meta property="article:tag" content="life"><meta property="article:tag" content="blazor"><meta property="article:published_time" content="2023-12-14T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-06T15:39:41.000Z"><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -37,12 +37,12 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script><title>组件生命周期 | 知识库</title><meta name="description" content="概述 Blazor 组件具有定义完善的生命周期，该生命周期从首次创建时开始，在销毁时结束。 组件生命周期由一组事件控制，这些事件响应特定触发器。 例如组件被初始化、用户与组件交互或组件所在的页面被关闭。 组件生命周期 Blazor 组件表示 Blazor 应用中的视图，它们定义布局和 UI 逻辑。 应用运行时，这些组件会生成 HTML 标记。 用户交互...">
-    <link rel="preload" href="/knowledge/assets/style-DilNA2Dl.css" as="style"><link rel="stylesheet" href="/knowledge/assets/style-DilNA2Dl.css">
-    <link rel="modulepreload" href="/knowledge/assets/app-dsQIpMaC.js"><link rel="modulepreload" href="/knowledge/assets/lifeCycle.html-mzG2yBv0.js"><link rel="modulepreload" href="/knowledge/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="preload" href="/kbms/assets/style-DpKrt0mi.css" as="style"><link rel="stylesheet" href="/kbms/assets/style-DpKrt0mi.css">
+    <link rel="modulepreload" href="/kbms/assets/app-DR4LVGSN.js"><link rel="modulepreload" href="/kbms/assets/lifeCycle-Cli4z6VG.js"><link rel="modulepreload" href="/kbms/assets/plugin-vue_export-helper-CDQIAITX.js">
     
   </head>
   <body>
     <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!----><!--]--><!--[--><!----><!--[--><!--]--><!--]--><!--]--></div>
-    <script type="module" src="/knowledge/assets/app-dsQIpMaC.js" defer></script>
+    <script type="module" src="/kbms/assets/app-DR4LVGSN.js" defer></script>
   </body>
 </html>

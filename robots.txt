@@ -1,4 +1,4 @@
 User-agent:*
 Disallow:
 
-Sitemap: https://azrng.gitee.io/kbms/knowledge/sitemap.xml
+Sitemap: https://azrng.gitee.io/kbms/kbms/sitemap.xml
