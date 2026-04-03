@@ -10,6 +10,8 @@ tag:
   - AI 编程
   - Skills
   - Plugins
+# 是否显示到列表
+article: false
 ---
 
 ## 先说结论

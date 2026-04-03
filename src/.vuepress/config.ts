@@ -6,7 +6,7 @@ import theme from "./theme.js";
 export default defineUserConfig({
 
   // 设置网站的前缀地址
-  base: "/knowledge/",
+  base: "/kbms/",
 
   // 不考虑多语言的布局
   lang: "zh-CN",
