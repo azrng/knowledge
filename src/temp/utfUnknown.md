@@ -1,5 +1,5 @@
 ---
-title: **彻底告别中文乱码：推荐一个强大的 .NET 编码检测库**
+title: 彻底告别中文乱码：推荐一个强大的 .NET 编码检测库
 lang: zh-CN
 date: 2026-03-20
 publish: true
